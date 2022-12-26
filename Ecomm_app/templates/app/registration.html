@@ -1,0 +1,51 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Customer Registration{% endblock title %}
+{% block main-content %}
+<br><br>
+      <h3>Customer Registration Form </h1>
+        <hr>
+        <section class="h-100 h-custom" style="background-color: #8fc4b7;">
+          <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-lg-8 col-xl-6">
+                <div class="card rounded-3">
+                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+                    class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+                    alt="Sample photo">
+                  <div class="card-body p-4 p-md-5">
+                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3>
+                    <form class="px-md-2" action="/ecomm_app/userregistration/" method="post">
+                      {% csrf_token %}
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="username">UseName</label>
+                        <input type="text" id="username" name="username" class="form-control" />
+                      </div>
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="text" id="email" name="email" class="form-control" />
+                      </div>
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="password1">Password</label>
+                        <input type="password" id="password1" name="password1" class="form-control" />
+                      </div>
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="password2">Confirm Password</label>
+                        <input type="password" id="password2" name="password2" class="form-control" />
+                      </div>
+                      
+                      <center><button type="submit" class="btn btn-success btn-lg mb-1">Submit</button></center><br>
+                      <h5><p class="mb-5 pb-lg-2" style="color: #61939a;"> have already an account? <a href="/ecomm_app/login/"
+                        style="color: #61939a;">Login here</a></p></h5>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+{% endblock main-content %}
+
+
+        

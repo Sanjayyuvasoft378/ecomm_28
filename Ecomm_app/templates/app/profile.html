@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Customer Registration{% endblock title %}
+{% block main-content %}
+<br><br>
+     <center> <h2>Profile Update Here </h2></center>
+        <hr>
+        <section class="h-100 h-custom" style="background-color: #8fc4b7;">
+          <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-lg-8 col-xl-6">
+                <div class="card rounded-3">
+                  <div class="card-body p-4 p-md-5">
+                    <form class="px-md-2" action="/ecomm_app/profileupdate/" method="post">
+                      {% csrf_token %}
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="username">UseName</label>
+                        <input type="text" id="username" name="username" class="form-control" />
+                      </div>
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="text" id="email" name="email" class="form-control" />
+                      </div>
+                      <center><button type="submit" class="btn btn-success btn-lg mb-1">Submit</button></center><br>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+{% endblock main-content %}
+
+
+        
