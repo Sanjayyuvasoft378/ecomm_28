@@ -76,7 +76,8 @@
               <a class="nav-link text-white" href="/ecomm_app/contact/">Contact Us</a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
+          <form class="d-flex" role="search" action='/ecomm_app/searchdata/' method='post'>
+            {% csrf_token %}
             <input
               class="form-control me-2"
               type="search"
@@ -88,7 +89,6 @@
             </button>
           </form>
         </div>
-
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown mx-2">
             <a
@@ -101,24 +101,24 @@
             </a>
             <ul class="dropdown-menu" area-labelledby="profileDropdown">
               <li>
-                <a class="dropdown-item" href="/ecomm_app/profile/">Profile</a>
+                <a class="dropdown-item" href="/ecomm_app/profileview/">Profile</a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">Orders</a>
+                <a class="dropdown-item" href="/ecomm_app/orderlist/">Orders</a>
               </li>
               <li>
                 {% comment %} {% url 'orders' %} {% endcomment %}
-                <a class="dropdown-item" href="#"
+                <a class="dropdown-item" href="/ecomm_app/changepassword/"
                   >Change Password</a
                 >
               </li>
               <li>
-                <a class="dropdown-item" href="#">Logout</a>
+                <a class="dropdown-item" href="/ecomm_app/logout/">Logout</a>
               </li>
             </ul>
           </li>
           <li class="nav-item mx-2">
-            <a class="nav-link text-white" href="#">Cart</a>
+            <a class="nav-link text-white" href="/ecomm_app/CartList/">Cart</a>
           </li>
           <li class="nav-item mx-2">
             <a class="nav-link text-white" href="#">Wishlist</a>
@@ -127,7 +127,7 @@
             <a class="nav-link text-white" href="/ecomm_app/login/">Login</a>
           </li>
           <li class="nav-item mx-2">
-            <a class="nav-link text-white" href="/ecomm_app/registrations/">Registration</a>
+            <a class="nav-link text-white" href="{% url 'registration' %}">Registration</a>
           </li>
         </ul>
       </div>
@@ -147,7 +147,7 @@
     {% block main-content %}{% endblock main-content %}
 
     <footer class="container-fluid bg-success text-center text-white p-2 mt-5">
-      Copyright : 2022 || Developed by : Sanjay Gupta
+      Copyright : EST 2022 || Developed by : Sanjay Gupta
     </footer>
 
     <script

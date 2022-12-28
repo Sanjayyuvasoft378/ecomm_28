@@ -8,10 +8,24 @@ class ProductAdmin(admin.ModelAdmin):
                     'description','composition','prodapp','category',
                     'product_image']
     
-@admin.register(UserRegistration)
-class UserRegistration(admin.ModelAdmin):
-    list_display = ['id','username','email','password1','password2']
+# @admin.register(UserRegistration)
+# class UserRegistration(admin.ModelAdmin):
+#     list_display = ['id','username','email','password1','password2']
 
 @admin.register(ContactUs)
 class ConatctAdmin(admin.ModelAdmin):
     list_display = ['id','username','email','subject','your_message']
+
+@admin.register(AddToCartModel)
+class AddToCart(admin.ModelAdmin):
+    list_display = ['title','description','qty','selling_price','discount_price']
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['id','product_title','qty','price']
+
+
+
+@admin.register(Wishlist)
+class WishlistAdmin(admin.ModelAdmin):
+    list_display = ['title','qty','discount_price','product_image']

@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Password Change{% endblock title %}
+{% block main-content %}
+        <section class="h-100 h-custom" style="background-color: #8fc4b7;">
+          <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-lg-8 col-xl-6">
+                <div class="card rounded-3">
+                  <div class="card-body p-4 p-md-5">
+                    <form class="px-md-2" action="{% url 'ChangePasswordAPI' %}" method="post">
+                      {% csrf_token %}
+                       <h3>Your Password Update Here </h3>
+                      <hr>
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="oldpassword">Old Password</label>
+                        <input type="password" id="oldpassword" name="oldpassword" class="form-control" />
+                      </div>
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="password1">New Password</label>
+                        <input type="password" id="password1" name="password1" class="form-control" />
+                      </div>
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="password2">Confirm Password</label>
+                        <input type="password" id="password2" name="password2" class="form-control" />
+                      </div>
+                      <center><button type="submit" class="btn btn-success btn-lg mb-1">Submit</button></center><br>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+{% endblock main-content %}

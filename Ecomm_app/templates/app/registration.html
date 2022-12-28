@@ -1,51 +1,41 @@
-{% extends 'app/base.html' %}
+p{% extends 'app/base.html' %}
 {% load static %}
 {% block title %}Customer Registration{% endblock title %}
 {% block main-content %}
-<br><br>
+ <div class="container">
+  <div class="row my-3">
+    <div class="col-sm-6 offset-sm-3"><br><br>
       <h3>Customer Registration Form </h1>
         <hr>
-        <section class="h-100 h-custom" style="background-color: #8fc4b7;">
-          <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-              <div class="col-lg-8 col-xl-6">
-                <div class="card rounded-3">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
-                    class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
-                    alt="Sample photo">
-                  <div class="card-body p-4 p-md-5">
-                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3>
-                    <form class="px-md-2" action="/ecomm_app/userregistration/" method="post">
-                      {% csrf_token %}
-                      <div class="form-outline mb-4">
-                        <label class="form-label" for="username">UseName</label>
-                        <input type="text" id="username" name="username" class="form-control" />
-                      </div>
-                      <div class="form-outline mb-4">
-                        <label class="form-label" for="email">Email</label>
-                        <input type="text" id="email" name="email" class="form-control" />
-                      </div>
-                      <div class="form-outline mb-4">
-                        <label class="form-label" for="password1">Password</label>
-                        <input type="password" id="password1" name="password1" class="form-control" />
-                      </div>
-                      <div class="form-outline mb-4">
-                        <label class="form-label" for="password2">Confirm Password</label>
-                        <input type="password" id="password2" name="password2" class="form-control" />
-                      </div>
-                      
-                      <center><button type="submit" class="btn btn-success btn-lg mb-1">Submit</button></center><br>
-                      <h5><p class="mb-5 pb-lg-2" style="color: #61939a;"> have already an account? <a href="/ecomm_app/login/"
-                        style="color: #61939a;">Login here</a></p></h5>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <form action="{% url 'registration' %}" method="post"  novalidate class="shadow ps-5">
+          {% csrf_token %} 
+          {% for fm in form %}<br>
+          {{fm.label_tag}} {{fm}}<small class="text-danger">{{fm.errors|striptags}}</small>
+          <br>
+          {% endfor %}
+          <input type = "submit" value="submit" class="btn btn-primary" />  <br>
+          <div class="text-center text-primary fw-bold">
+            <small>Existing User ? <a href="{% url 'login' %}" class="text-danger">Login Now</a></small>
+          </div> 
 
+
+          {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+              <p  class="alert alert-danger my-3>{{error}}"</p>
+            {% endfor %}
+          {% endif %}
+
+          {% if messages %}
+          {% for msg in messages %}
+            <div class="alert alert-{{msg.tag}}" role="alert">
+              {{msg}}
+            </div>
+          {% endfor %}
+          {% endif %}
+
+        </form> 
+   </div>
+  </div>
+</div> 
 {% endblock main-content %}
 
-
-        

@@ -1,0 +1,21 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Profile Page{% endblock title %}
+{% block main-content %}
+<div class="container">
+    <form action='#' method='get'>
+        {% csrf_token %}
+        {{profile_view}}
+        <div class  = "row flex justify-content-between">
+            <div class="productdetail col-lg-5">
+                <h1 style="font-family:Georgia; font-size: 50px;">{{profile_data.username}}
+                </h1>
+                <h3 style="font-family:Georgia; font-size: 50px;"> {{profile_data.email}}
+                </h3>
+                
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock main-content %}
+
