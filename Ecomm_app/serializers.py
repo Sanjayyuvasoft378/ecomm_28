@@ -1,10 +1,10 @@
 from rest_framework import serializers
 from Ecomm_app.models import *
 
-# class UserRegistrationSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = UserRegistration
-#         fields = '__all__'
+class UserRegistrationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserRegistration
+        fields = '__all__'
         
 # class LoginSerializer(serializers.ModelSerializer):
 #     class Meta:
@@ -43,8 +43,9 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = ['product_title','qty','price']
 
 
-# class WishlistSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Wishlist
-#         fileds =  ['title','discount_price','qty','product_image']
+class WishlistSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Wishlist
+        # fileds =  ['title','discount_price','qty','product_image']
+        fields = "__all__"
 

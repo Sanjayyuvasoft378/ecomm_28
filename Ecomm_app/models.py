@@ -30,14 +30,14 @@ class Product(models.Model):
     def __str__(self):
         return self.title
     
-# class UserRegistration(models.Model):
-#     username = models.CharField(max_length=50)
-#     email = models.EmailField(max_length=254, unique=True)
-#     password1 = models.CharField(max_length=15)
-#     password2 = models.CharField(max_length=15)
+class UserRegistration(models.Model):
+    username = models.CharField(max_length=50)
+    email = models.EmailField(max_length=254, unique=True)
+    password1 = models.CharField(max_length=15)
+    password2 = models.CharField(max_length=15)
 
-#     def __str__(self):
-#         return self.username
+    def __str__(self):
+        return self.username
     
     
 class ContactUs(models.Model):
@@ -134,7 +134,57 @@ class Wishlist(models.Model):
         return self.title #+' '+ self.qty
 
 
-    
+STATE_CHOICES = (
+("Andhra Pradesh","Andhra Pradesh",),
+("Arunachal Pradesh ","Arunachal Pradesh "),
+("Assam","Assam"),
+("Bihar","Bihar"),
+("Chhattisgarh","Chhattisgarh"),
+("Goa","Goa"),
+("Gujarat","Gujarat"),
+("Haryana","Haryana"),
+("Himachal Pradesh","Himachal Pradesh"),
+("Jammu and Kashmir","Jammu and Kashmir"),
+("Jharkhand","Jharkhand"),
+("Karnataka","Karnataka"),
+("Kerala","Kerala"),
+("Madhya Pradesh","Madhya Pradesh"),
+("Maharashtra","Maharashtra"),
+("Manipur","Manipur"),
+("Meghalaya","Meghalaya"),
+("Mizoram","Mizoram"),
+("Nagaland","Nagaland"),
+("Odisha","Odisha"),
+("Punjab","Punjab"),
+("Rajasthan","Rajasthan"),
+("Sikkim","Sikkim"),
+("Tamil Nadu","Tamil Nadu"),
+("Telangana","Telangana"),
+("Tripura","Tripura"),
+("Uttar Pradesh","Uttar Pradesh"),
+("Uttarakhand","Uttarakhand"),
+("West Bengal","West Bengal"),
+("Andaman and Nicobar Islands","Andaman and Nicobar Islands"),
+("Chandigarh","Chandigarh"),
+("Dadra and Nagar Haveli","Dadra and Nagar Haveli"),
+("Daman and Diu","Daman and Diu"),
+("Lakshadweep","Lakshadweep"),
+("National Capital Territory of Delhi","National Capital Territory of Delhi"),
+("Puducherry","Puducherry")
 
+)
+
+    
+class Customer(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=20)
+    locality = models.CharField(max_length=20)
+    city = models.CharField(max_length=20)
+    mobileNo = models.IntegerField(default=0)
+    zipcode  = models.IntegerField()
+    state = models.CharField(choices=STATE_CHOICES, max_length=200)
+
+    def __str__(self):
+        return self.name
 
     

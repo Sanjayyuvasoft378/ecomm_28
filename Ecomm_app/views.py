@@ -57,6 +57,7 @@ class CustomerLoginView(View):
     def get(self, request):
         form = UserCreationForm()
         return render(request, "app/login.html", locals())
+    
 
 
 # class RegistrationAPI(APIView):
@@ -72,18 +73,18 @@ class CustomerLoginView(View):
 #             return redirect('/ecomm_app/registrations/')
 
 
-class LoginAPI(APIView):
-    def post(self,request, *args, **kwargs):
-        email = request.data.get('email',None)
-        password1 = request.data.get('password1',None)
-        try:
-            login_data = UserRegistration.objects.get(email=email, password1=password1)
-            if login_data is not None:
-                return redirect('/ecomm_app/index/')
-            else:
-                return redirect('/ecomm_app/registrations/')
-        except Exception as e:
-            return redirect('/ecomm_app/registrations/')
+# class LoginAPI(APIView):
+#     def post(self,request, *args, **kwargs):
+#         email = request.data.get('email',None)
+#         password1 = request.data.get('password1',None)
+#         try:
+#             login_data = UserRegistration.objects.get(email=email, password1=password1)
+#             if login_data is not None:
+#                 return redirect('/ecomm_app/index/')
+#             else:
+#                 return redirect('/ecomm_app/registrations/')
+#         except Exception as e:
+#             return redirect('/ecomm_app/registrations/')
 
 
 def logout_view(request):
@@ -223,9 +224,9 @@ class orderlistapi(APIView):
 class CartList(APIView):
     def get(self, request):
         cart_data = AddToCartModel.objects.all()
-        Serializer = AddToCartSerializer(cart_data, many=True)
+        # Serializer = AddToCartSerializer(cart_data, many=True)
         return render(request,'app/cartlist.html',locals())
-        # return JsonResponse(Serializer.data,safe=False)
+        return JsonResponse(Serializer.data,safe=False)
              
 
 def filter(request):
@@ -262,8 +263,9 @@ class WishlistAPI(APIView):
     def get(self, request):
         try:
             get_data = Wishlist.objects.all()
-            Serializer = AddToCartSerializer(get_data, many=True)
-            return JsonResponse(Serializer.data, safe=False,status=status.HTTP_200_OK)
+            Serializer = WishlistSerializer(get_data, many=True)
+            # return JsonResponse(Serializer.data, safe=False,status=status.HTTP_200_OK)
+            return render(request,'app/wishlist.html', locals())
         except Exception as e:
             return JsonResponse({"msg":"Internal server error {}".format(e)}
                                 ,safe=False,status=status.HTTP_500_INTERNAL_SERVER_ERROR)

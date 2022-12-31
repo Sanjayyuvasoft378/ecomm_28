@@ -29,3 +29,8 @@ class OrderAdmin(admin.ModelAdmin):
 @admin.register(Wishlist)
 class WishlistAdmin(admin.ModelAdmin):
     list_display = ['title','qty','discount_price','product_image']
+
+
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ['id','user','locality','name','state','zipcode']
