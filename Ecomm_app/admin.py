@@ -4,10 +4,26 @@ from .models import *
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id','title','selling_price','discount_price',
-                    'description','composition','prodapp','category',
-                    'product_image']
-    
+    list_display = ['id','title','discount_price',
+                'composition','category','product_image']
+
+
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ['id','user','locality',
+                'city','state','zipcode']
+     
+
+
+
+
+
+
+
+
+
+
+
 # @admin.register(UserRegistration)
 # class UserRegistration(admin.ModelAdmin):
 #     list_display = ['id','username','email','password1','password2']
@@ -30,7 +46,3 @@ class OrderAdmin(admin.ModelAdmin):
 class WishlistAdmin(admin.ModelAdmin):
     list_display = ['title','qty','discount_price','product_image']
 
-
-@admin.register(Customer)
-class CustomerAdmin(admin.ModelAdmin):
-    list_display = ['id','user','locality','name','state','zipcode']

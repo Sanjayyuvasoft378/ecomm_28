@@ -7,7 +7,7 @@ from django.contrib.auth import views as auth_view
 
 urlpatterns = [
     path('index/', views.index),
-    path('profile/', views.profileupdate),
+#     path('profile/', views.profileupdate),
     path('about/', views.about),
     path('contact/', views.contact),
     path('login/', views.CustomerLoginView.as_view(), name='login'),
@@ -23,7 +23,7 @@ urlpatterns = [
     path('profileupdate/', views.UpdateProfile.as_view(), name='profileupdate'),
     path('productlist/', views.ProductListAPI.as_view(), name='productlist'),
     path('addtocart/', views.AddToCartAPI.as_view(), name='addtocart'),
-    path('profileview/<int:pk>', views.ProfileViewAPI.as_view(), name='profileview'),
+#     path('profileview/<int:pk>', views.ProfileViewAPI.as_view(), name='profileview'),
     path('changepassword/', views.changepassword, name='changepassword'),
     path('ChangePasswordAPI/', views.ChangePasswordAPI.as_view(),
          name='ChangePasswordAPI'),
@@ -41,6 +41,8 @@ urlpatterns = [
          name='registration'),
     path('accounts/login/', auth_view.LoginView.as_view(template_name='app/login.html',
          authentication_form=LoginForm), name='login'),
-    path('password-reset/',auth_view.PasswordResetView.as_view(template_name="app/password_reset.html",form_class=PasswordResetForm), name="password-reset"),
+    path('password-reset/',auth_view.PasswordResetView.as_view(template_name="app/password_reset.html",form_class=MyPasswordResetForm), name="password-reset"),
+    path('profile/',views.ProfileView.as_view(),name='profile'),
+    path('address/',views.address,name='address'),
 
 ]

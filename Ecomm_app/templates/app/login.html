@@ -33,7 +33,7 @@
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
                 <div class="card-body p-4 p-lg-5 text-black">
   
-                  <form action="/ecomm_app/login/" method="post" style="display:grid;height:38rem;">
+                  <form action="{% url 'login' %}" method="post" style="display:grid;height:38rem;">
                     {% csrf_token %}
                     <h3>Customer Login Form </h1><hr>
                     {% for fm in form %}

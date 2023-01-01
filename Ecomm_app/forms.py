@@ -1,12 +1,12 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,UsernameField,PasswordResetForm
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,UsernameField,PasswordChangeForm
 from .models import *
 from django.contrib.auth.models import User
 
 
 class LoginForm(AuthenticationForm):
-    Email = forms.CharField(label="Email",widget=forms.EmailInput(attrs={"autofocus":"True","class":"form-control"}))
-    password1 = forms.CharField(label="Password1",widget=forms.PasswordInput(attrs={"autocomplete":"current-password","class":"form-control"}))
+    username = forms.CharField(widget=forms.EmailInput(attrs={"autofocus":"True","class":"form-control"}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"autocomplete":"current-password","class":"form-control"}))
 
 class UserRegistrationForm(UserCreationForm):
     username = forms.CharField(widget=forms.TextInput(
@@ -23,5 +23,18 @@ class UserRegistrationForm(UserCreationForm):
         fields = ['username','email','password1','password2']
     
     
-class PasswordResetForm(PasswordResetForm):
+class MyPasswordResetForm(PasswordChangeForm):
     pass
+
+class CustomerProfileForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ['name','locality','city','mobileNo','state','zipcode']
+        widget = {
+            'name':forms.TextInput(attrs={'class':"form-control"}),
+            'locality':forms.TextInput(attrs={'class':"form-control"}),
+            'city':forms.TextInput(attrs={'class':"form-control"}),
+            'mobileNo':forms.NumberInput(attrs={'class':"form-control"}),
+            'state':forms.Select(attrs={'class':"form-control"}),
+            'zipcode':forms.NumberInput(attrs={'class':"form-control"}),
+        }

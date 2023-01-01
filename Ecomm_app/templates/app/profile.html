@@ -2,34 +2,42 @@
 {% load static %}
 {% block title %}Customer Registration{% endblock title %}
 {% block main-content %}
-<br><br>
-     <center> <h2>Profile Update Here </h2></center>
-        <hr>
-        <section class="h-100 h-custom" style="background-color: #8fc4b7;">
-          <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-              <div class="col-lg-8 col-xl-6">
-                <div class="card rounded-3">
-                  <div class="card-body p-4 p-md-5">
-                    <form class="px-md-2" action="/ecomm_app/profileupdate/" method="post">
-                      {% csrf_token %}
-                      <div class="form-outline mb-4">
-                        <label class="form-label" for="username">UserName</label>
-                        <input type="text" id="username" name="username" class="form-control" />
-                      </div>
-                      <div class="form-outline mb-4">
-                        <label class="form-label" for="email">Email</label>
-                        <input type="text" id="email" name="email" class="form-control" />
-                      </div>
-                      <center><button type="submit" class="btn btn-success btn-lg mb-1">Submit</button></center><br>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+<div class="container my-5">
+  <div class="row">
+    <h3>welcome<span class="text-capitalize">{{request.user}}</span></h3>
 
+    <div class="col-sm-2 border-end">
+      <ul class="list-unstyled">
+        <li class="d-grid"><a href="{% url 'profile' %}" class="btn btn-primary">Profile</a></li>
+        <li class="d-grid"><a href="{% url 'address' %}" class="btn btn-primary">Address</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-8 offset-sm-1">
+      <form action="" method="post">
+        {% csrf_token %}
+        {% for fm in form %}<br><br><br>
+          {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+        {% endfor %}
+        <div class="col-12 mt-3">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        {% if form.non_field_errors %}
+          {% for error in form.non_field_errors %}
+            <p class="alert alert-danger my-3">{{error}}</p>
+          {% endfor %}
+        {% endif %}
+
+        {% if messages %}
+          {% for msg in messages %}
+            <div class="alert alert-{{msg.tag}}" role="alert">
+              {{msg}}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock main-content %}
 
 
