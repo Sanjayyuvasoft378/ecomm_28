@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%!v)yfsv#uoz2spvd9b9i_(sv+)m6q@hubax2^7b5%w&6os7zi'
+SECRET_KEY = 'django-insecure-%!v)yfsv#uoz2spvd9b9i_(sv+)m6q@hubax2^7b5%w&6os7zi--'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -63,9 +63,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'rest_framework',
     'Ecomm_app',
+    'admin_app',
 ]
 
 MIDDLEWARE = [
@@ -96,7 +96,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Ecomm_Project.wsgi.application'
+WSGI_APPLICATION = 'Ecomm_Project.application'
 
 
 # Database
@@ -105,7 +105,7 @@ WSGI_APPLICATION = 'Ecomm_Project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR  'db.sqlite3',
     }
 }
 

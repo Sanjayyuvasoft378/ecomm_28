@@ -1,0 +1,962 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="GeniusOcean" />
+    <meta
+      name="csrf-token"
+      content="7tYQOgpBdZXmaOhCG7AKZTzm3c7tYvM7t42IZFYv"
+    />
+    <!-- Title -->
+    <title>Neel_Products</title>
+    <!-- favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://product.geniusocean.com/geniuscart/assets/images/16480155641571567283faviconpng.png"
+    />
+    <!-- Bootstrap -->
+    <link
+      href="https://product.geniusocean.com/geniuscart/assets/admin/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://product.geniusocean.com/geniuscart/assets/admin/css/fontawesome.css"
+    />
+    <!-- icofont -->
+    <link
+      rel="stylesheet"
+      href="https://product.geniusocean.com/geniuscart/assets/admin/css/icofont.min.css"
+    />
+    <!-- Sidemenu Css -->
+    <link
+      href="https://product.geniusocean.com/geniuscart/assets/admin/plugins/fullside-menu/css/dark-side-style.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://product.geniusocean.com/geniuscart/assets/admin/plugins/fullside-menu/waves.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://product.geniusocean.com/geniuscart/assets/admin/css/plugin.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://product.geniusocean.com/geniuscart/assets/admin/css/jquery.tagit.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://product.geniusocean.com/geniuscart/assets/admin/css/bootstrap-coloroicker.css"
+    />
+    <!-- Main Css -->
+
+    <!-- stylesheet -->
+
+    <link
+      href="https://product.geniusocean.com/geniuscart/assets/admin/css/style.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://product.geniusocean.com/geniuscart/assets/admin/css/custom.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://product.geniusocean.com/geniuscart/assets/admin/css/responsive.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://product.geniusocean.com/geniuscart/assets/admin/css/common.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body id="page-top">
+    <div class="page">
+      <div class="page-main">
+        <!-- Header Menu Area Start -->
+        <div class="header">
+          <div class="container-fluid">
+            <div class="d-flex mobile-menu-check justify-content-between">
+              <a
+                class="admin-logo"
+                href="https://product.geniusocean.com/geniuscart"
+                target="_blank"
+              >
+                <img
+                  src="{% static 'images/Neel.png' %}"
+                  width="160"
+                  height="50"
+                />
+              </a>
+              <div class="menu-toggle-button">
+                <a class="nav-link" href="javascript:;" id="sidebarCollapse">
+                  <div class="my-toggl-icon">
+                    <span class="bar1"></span>
+                    <span class="bar2"></span>
+                    <span class="bar3"></span>
+                  </div>
+                </a>
+              </div>
+
+              <div class="right-eliment">
+                <ul class="list">
+                  <input
+                    type="hidden"
+                    id="all_notf_count"
+                    value="https://product.geniusocean.com/geniuscart/admin/all/notf/count"
+                  />
+                  <li class="bell-area">
+                    <a
+                      class="dropdown-toggle-1"
+                      target="_blank"
+                      href="https://product.geniusocean.com/geniuscart"
+                    >
+                      <i class="fas fa-globe-americas"></i>
+                    </a>
+                  </li>
+
+                  <li class="bell-area">
+                    <a
+                      id="notf_conv"
+                      class="dropdown-toggle-1"
+                      href="javascript:;"
+                    >
+                      <i class="far fa-envelope"></i>
+                      <span id="conv-notf-count">0</span>
+                    </a>
+                    <div class="dropdown-menu">
+                      <div
+                        class="dropdownmenu-wrapper"
+                        data-href="https://product.geniusocean.com/geniuscart/admin/conv/notf/show"
+                        id="conv-notf-show"
+                      ></div>
+                    </div>
+                  </li>
+
+                  <li class="bell-area">
+                    <a
+                      id="notf_product"
+                      class="dropdown-toggle-1"
+                      href="javascript:;"
+                    >
+                      <i class="icofont-cart"></i>
+                      <span id="product-notf-count">0</span>
+                    </a>
+                    <div class="dropdown-menu">
+                      <div
+                        class="dropdownmenu-wrapper"
+                        data-href="https://product.geniusocean.com/geniuscart/admin/product/notf/show"
+                        id="product-notf-show"
+                      ></div>
+                    </div>
+                  </li>
+
+                  <li class="bell-area">
+                    <a
+                      id="notf_user"
+                      class="dropdown-toggle-1"
+                      href="javascript:;"
+                    >
+                      <i class="far fa-user"></i>
+                      <span id="user-notf-count">0</span>
+                    </a>
+                    <div class="dropdown-menu">
+                      <div
+                        class="dropdownmenu-wrapper"
+                        data-href="https://product.geniusocean.com/geniuscart/admin/user/notf/show"
+                        id="user-notf-show"
+                      ></div>
+                    </div>
+                  </li>
+
+                  <li class="bell-area">
+                    <a
+                      id="notf_order"
+                      class="dropdown-toggle-1"
+                      href="javascript:;"
+                    >
+                      <i class="far fa-newspaper"></i>
+                      <span id="order-notf-count">0</span>
+                    </a>
+                    <div class="dropdown-menu">
+                      <div
+                        class="dropdownmenu-wrapper"
+                        data-href="https://product.geniusocean.com/geniuscart/admin/order/notf/show"
+                        id="order-notf-show"
+                      ></div>
+                    </div>
+                  </li>
+
+                  <li class="login-profile-area">
+                    <a class="dropdown-toggle-1" href="javascript:;">
+                      <div class="user-img">
+                        <img
+                          src="https://product.geniusocean.com/geniuscart/assets/images/admins/1556780563user.png"
+                          alt=""
+                        />
+                      </div>
+                    </a>
+                    <div class="dropdown-menu">
+                      <div class="dropdownmenu-wrapper">
+                        <ul>
+                          <h5>Welcome!</h5>
+                          <li>
+                            <a
+                              href="https://product.geniusocean.com/geniuscart/admin/profile"
+                              ><i class="fas fa-user"></i> Edit Profile</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="https://product.geniusocean.com/geniuscart/admin/password"
+                              ><i class="fas fa-cog"></i> Change Password</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="https://product.geniusocean.com/geniuscart/admin/logout"
+                              ><i class="fas fa-power-off"></i> Logout</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Header Menu Area End -->
+        <div class="wrapper">
+          <!-- Side Menu Area Start -->
+          <nav id="sidebar" class="nav-sidebar">
+            <ul class="list-unstyled components" id="accordion">
+              <li>
+                <a href="{% url 'dashboard' %}" class="wave-effect"
+                  ><i class="fa fa-home mr-2"></i>Dashboard</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#order"
+                  class="accordion-toggle wave-effect"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                  ><i class="fas fa-hand-holding-usd"></i>Orders</a
+                >
+                <ul
+                  class="collapse list-unstyled"
+                  id="order"
+                  data-parent="#accordion"
+                >
+                  <li>
+                    <a href="{% url 'allorder' %}"> All Orders</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'pending-order' %}"> Pending Orders</a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/orders?status=processing"
+                    >
+                      Processing Orders</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/orders?status=completed"
+                    >
+                      Completed Orders</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/orders?status=declined"
+                    >
+                      Declined Orders</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a
+                  href="#menu5"
+                  class="accordion-toggle wave-effect"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                  ><i class="fas fa-sitemap"></i>Manage Categories</a
+                >
+                <ul
+                  class="collapse list-unstyled"
+                  id="menu5"
+                  data-parent="#accordion"
+                >
+                  <li class="">
+                    <a
+                      href="{% url 'main-category' %}"
+                      ><span>Main Category</span></a>
+                  </li>
+                  <li class="">
+                    <a
+                      href="{% url 'sub-category' %}"
+                      ><span>Sub Category</span></a
+                    >
+                  </li>
+                  <li class="">
+                    <a
+                      href="{% url 'child-category' %}"
+                      ><span>Child Category</span></a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a
+                  href="#menu2"
+                  class="accordion-toggle wave-effect"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                >
+                  <i class="icofont-cart"></i>Products
+                </a>
+                <ul
+                  class="collapse list-unstyled"
+                  id="menu2"
+                  data-parent="#accordion"
+                >
+                  <li>
+                    <a
+                      href="{% url 'add-product' %}"
+                      ><span>Add New Product</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="{% url 'product-list' %}"
+                      ><span>All Products</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="{% url 'deactivate-product' %}"
+                      ><span>Deactivated Product</span></a
+                    >
+                  </li>
+                 
+                </ul>
+              </li>
+              <li>
+                <a
+                  href="#menu4"
+                  class="accordion-toggle wave-effect"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                >
+                  <i class="icofont-speech-comments"></i>Product Discussion
+                </a>
+                <ul
+                  class="collapse list-unstyled"
+                  id="menu4"
+                  data-parent="#accordion"
+                >
+                  <li>
+                    <a
+                      href="{% url 'product-reviews' %}"
+                      ><span>Product Reviews</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="{% url 'product-comments' %}"
+                      ><span>Comments</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="{% url 'product-reports' %}"
+                      ><span>Reports</span></a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a
+                  href="{% url 'coupons' %}"
+                  class="wave-effect"
+                  ><i class="fas fa-percentage"></i>Set Coupons</a>
+              </li>
+              <li>
+                <a href="#menu3"
+                  class="accordion-toggle wave-effect"
+                  data-toggle="collapse"
+                  aria-expanded="false">
+                  <i class="icofont-user"></i>Customers</a>
+                <ul class="collapse list-unstyled"
+                  id="menu3"
+                  data-parent="#accordion">
+                  <li>
+                    <a href="https://product.geniusocean.com/geniuscart/admin/users"
+                      ><span>Customers List</span></a>
+                  </li>
+                  
+                </ul>
+              </li>
+              <li>
+                <a
+                  href="#vendor"
+                  class="accordion-toggle wave-effect"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                >
+                  <i class="icofont-ui-user-group"></i>Vendors
+                </a>
+                <ul
+                  class="collapse list-unstyled"
+                  id="vendor"
+                  data-parent="#accordion"
+                >
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/vendors"
+                      ><span>Vendors List</span></a
+                    >
+                  </li>
+                 
+                </ul>
+              </li>
+
+              <li>
+                <a
+                  href="#vendorSubs"
+                  class="accordion-toggle wave-effect"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                >
+                  <i class="icofont-user-suited"></i>Vendor Subscriptions
+                </a>
+                <ul
+                  class="collapse list-unstyled"
+                  id="vendorSubs"
+                  data-parent="#accordion"
+                >
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/vendors/subs/completed"
+                      ><span>Completed Subscriptions</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/vendors/subs/pending"
+                      ><span>Pending Subscriptions</span></a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a
+                  href="#vendor1"
+                  class="accordion-toggle wave-effect"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                >
+                  <i class="icofont-verification-check"></i>Vendor Verifications
+                </a>
+                <ul
+                  class="collapse list-unstyled"
+                  id="vendor1"
+                  data-parent="#accordion"
+                >
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/verificatons/all"
+                      ><span>All Verifications</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/verificatons/pending"
+                      ><span>Pending Verifications</span></a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a
+                  href="https://product.geniusocean.com/geniuscart/admin/subscription"
+                  class="wave-effect"
+                  ><i class="fas fa-dollar-sign"></i>Vendor Subscription
+                  Plans</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="#msg"
+                  class="accordion-toggle wave-effect"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-fw fa-newspaper"></i>Messages
+                </a>
+                <ul
+                  class="collapse list-unstyled"
+                  id="msg"
+                  data-parent="#accordion"
+                >
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/tickets"
+                      ><span>Tickets</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/disputes"
+                      ><span>Disputes</span></a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              
+              <li>
+                
+                  <i class="fas fa-edit"></i>Home Page Settings
+                </a>
+                <ul
+                  class="collapse list-unstyled"
+                  id="homepage"
+                  data-parent="#accordion"
+                >
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/slider"
+                      ><span>Sliders</span></a
+                    >
+                  </li>
+
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/arrival"
+                      ><span>Arrival Section</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/general-settings/deal_of_the_day"
+                      ><span>Deal of the day</span></a
+                    >
+                  </li>
+
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/partner"
+                      ><span>Partners</span></a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a
+                  href="#menu"
+                  class="accordion-toggle wave-effect"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-file-code"></i>Menu Page Settings
+                </a>
+                <ul
+                  class="collapse list-unstyled"
+                  id="menu"
+                  data-parent="#accordion"
+                >
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/faq"
+                      ><span>FAQ Page</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/page-settings/contact"
+                      ><span>Contact Us Page</span></a
+                    >
+                  </li>
+                  </li>
+                </ul>
+              </li>
+
+             
+
+              <li>
+                <a
+                  href="#payments"
+                  class="accordion-toggle wave-effect"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-file-code"></i>Payment Settings
+                </a>
+                <ul
+                  class="collapse list-unstyled"
+                  id="payments"
+                  data-parent="#accordion"
+                >
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/payment-informations"
+                      ><span>Payment Information</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/paymentgateway"
+                      ><span>Payment Gateways</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/currency"
+                      ><span>Currencies</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/rewards"
+                      ><span>Reward Information</span></a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a
+                  href="#socials"
+                  class="accordion-toggle wave-effect"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-paper-plane"></i>Social Settings
+                </a>
+                <ul
+                  class="collapse list-unstyled"
+                  id="socials"
+                  data-parent="#accordion"
+                >
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/social-link"
+                      ><span>Social Links</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/social/facebook"
+                      ><span>Facebook Login</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/social/google"
+                      ><span>Google Login</span></a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li>
+               
+                <ul
+                  class="collapse list-unstyled"
+                  id="seoTools"
+                  data-parent="#accordion"
+                >
+                  <li>
+                    <a
+                      href="https://product.geniusocean.com/geniuscart/admin/products/popular/30"
+                      ><span>Popular Products</span></a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a
+                  href="https://product.geniusocean.com/geniuscart/admin/staff"
+                  class="wave-effect"
+                  ><i class="fas fa-user-secret"></i>Manage Staffs</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://product.geniusocean.com/geniuscart/admin/subscribers"
+                  class="wave-effect"
+                  ><i class="fas fa-users-cog mr-2"></i>Subscribers</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="https://product.geniusocean.com/geniuscart/admin/role"
+                  class="wave-effect"
+                  ><i class="fas fa-user-tag"></i>Manage Roles</a
+                >
+              </li>
+
+              <!--<li>-->
+              <!--    <a href="#sactive" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">-->
+              <!--        <i class="fas fa-cog"></i>System Activation-->
+              <!--    </a>-->
+              <!--    <ul class="collapse list-unstyled" id="sactive" data-parent="#accordion">-->
+
+              <!--        <li><a href="https://product.geniusocean.com/geniuscart/admin/activation"> Activation</a></li>-->
+              <!--        <li><a href="https://product.geniusocean.com/geniuscart/admin/generate/backup"> Generate Backup</a></li>-->
+              <!--    </ul>-->
+              <!--</li>-->
+
+              <li class="mt-3 text-dark text-center">Version 4.0</li>
+            </ul>
+          </nav>
+
+        <script type="text/javascript">
+      var mainurl = "https://product.geniusocean.com/geniuscart";
+      var admin_loader = 1;
+      var whole_sell = 6;
+      var getattrUrl =
+        "https://product.geniusocean.com/geniuscart/admin/getattributes";
+      var curr = { id: 1, name: "USD", sign: "$", value: "1", is_default: "1" };
+      var lang = {
+        additional_price: "0.00 (Additional Price)",
+      };
+    </script>
+
+    <!-- Dashboard Core -->
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/js/vendors/jquery-1.12.4.min.js"></script>
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/js/vendors/vue.js"></script>
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/js/vendors/bootstrap.min.js"></script>
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/js/jqueryui.min.js"></script>
+    <!-- Fullside-menu Js-->
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/plugins/fullside-menu/jquery.slimscroll.min.js"></script>
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/plugins/fullside-menu/waves.min.js"></script>
+
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/js/plugin.js"></script>
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/js/Chart.min.js"></script>
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/js/tag-it.js"></script>
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/js/nicEdit.js"></script>
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/js/bootstrap-colorpicker.min.js"></script>
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/js/notify.js"></script>
+
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/js/jquery.canvasjs.min.js"></script>
+
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/js/load.js"></script>
+    <!-- Custom Js-->
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/js/custom.js"></script>
+    <!-- AJAX Js-->
+    <script src="https://product.geniusocean.com/geniuscart/assets/admin/js/myscript.js"></script>
+
+    <script type="text/javascript">
+      (function ($) {
+        "use strict";
+
+        displayLineChart();
+
+        function displayLineChart() {
+          var data = {
+            labels: [
+              "23 Feb",
+              "22 Feb",
+              "21 Feb",
+              "20 Feb",
+              "19 Feb",
+              "18 Feb",
+              "17 Feb",
+              "16 Feb",
+              "15 Feb",
+              "14 Feb",
+              "13 Feb",
+              "12 Feb",
+              "11 Feb",
+              "10 Feb",
+              "09 Feb",
+              "08 Feb",
+              "07 Feb",
+              "06 Feb",
+              "05 Feb",
+              "04 Feb",
+              "03 Feb",
+              "02 Feb",
+              "01 Feb",
+              "31 Jan",
+              "30 Jan",
+              "29 Jan",
+              "28 Jan",
+              "27 Jan",
+              "26 Jan",
+              "25 Jan",
+            ],
+            datasets: [
+              {
+                label: "Prime and Fibonacci",
+                fillColor: "#3dbcff",
+                strokeColor: "#0099ff",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                  "0",
+                ],
+              },
+            ],
+          };
+          var ctx = document.getElementById("lineChart").getContext("2d");
+          var options = {
+            responsive: true,
+          };
+          var lineChart = new Chart(ctx).Line(data, options);
+        }
+
+        $("#poproducts").dataTable({
+          ordering: false,
+          lengthChange: false,
+          searching: false,
+          ordering: false,
+          info: false,
+          autoWidth: false,
+          responsive: true,
+          paging: false,
+        });
+
+        $("#pproducts").dataTable({
+          ordering: false,
+          lengthChange: false,
+          searching: false,
+          ordering: false,
+          info: false,
+          autoWidth: false,
+          responsive: true,
+          paging: false,
+        });
+
+        var chart1 = new CanvasJS.Chart("chartContainer-topReference", {
+          exportEnabled: true,
+          animationEnabled: true,
+
+          legend: {
+            cursor: "pointer",
+            horizontalAlign: "right",
+            verticalAlign: "center",
+            fontSize: 16,
+            padding: {
+              top: 20,
+              bottom: 2,
+              right: 20,
+            },
+          },
+          data: [
+            {
+              type: "pie",
+              showInLegend: true,
+              legendText: "",
+              toolTipContent:
+                "{name}: <strong>{#percent%} (#percent%)</strong>",
+              indexLabel: "#percent%",
+              indexLabelFontColor: "white",
+              indexLabelPlacement: "inside",
+              dataPoints: [
+                { y: 11935, name: "geniusocean.com" },
+                { y: 2728, name: "demo.geniusocean.com" },
+                { y: 2485, name: "" },
+                { y: 800, name: "wizardvilla.com" },
+                { y: 303, name: "codecanyon.net" },
+              ],
+            },
+          ],
+        });
+        chart1.render();
+
+        var chart = new CanvasJS.Chart("chartContainer-os", {
+          exportEnabled: true,
+          animationEnabled: true,
+          legend: {
+            cursor: "pointer",
+            horizontalAlign: "right",
+            verticalAlign: "center",
+            fontSize: 16,
+            padding: {
+              top: 20,
+              bottom: 2,
+              right: 20,
+            },
+          },
+          data: [
+            {
+              type: "pie",
+              showInLegend: true,
+              legendText: "",
+              toolTipContent:
+                "{name}: <strong>{#percent%} (#percent%)</strong>",
+              indexLabel: "#percent%",
+              indexLabelFontColor: "white",
+              indexLabelPlacement: "inside",
+              dataPoints: [
+                { y: 19867, name: "Windows 10" },
+                { y: 12287, name: "Unknown OS Platform" },
+                { y: 3325, name: "Android" },
+                { y: 2894, name: "Mac OS X" },
+                { y: 1347, name: "Windows 7" },
+              ],
+            },
+          ],
+        });
+        chart.render();
+      })(jQuery);
+    </script>
+
+  {% block 'main-content' %}
+  {% endblock 'main-content' %}
+  </body>
+</html>

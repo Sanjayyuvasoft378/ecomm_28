@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(widget=forms.EmailInput(attrs={"autofocus":"True","class":"form-control"}))
+    username = forms.CharField(widget=forms.TextInput(attrs={"autofocus":"True","class":"form-control"}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"autocomplete":"current-password","class":"form-control"}))
 
 class UserRegistrationForm(UserCreationForm):
@@ -20,7 +20,7 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username','email','password1','password2']
+        fields = ['id','username','email','password1','password2']
     
     
 class MyPasswordResetForm(PasswordChangeForm):
@@ -37,4 +37,24 @@ class CustomerProfileForm(forms.ModelForm):
             'mobileNo':forms.NumberInput(attrs={'class':"form-control"}),
             'state':forms.Select(attrs={'class':"form-control"}),
             'zipcode':forms.NumberInput(attrs={'class':"form-control"}),
+        }
+        
+        
+        
+class AddToCartForm(forms.ModelForm):
+    class Meta:
+        model = AddToCartModel
+        fields = ['product_id','qty']
+        widget = {
+            'product_id':forms.TextInput(attrs={'class':'form-control'}),
+            'qty':forms.NumberInput(attrs={'class':'form-control'})
+        }
+        
+class AddToWishlistForm(forms.ModelForm):
+    class Meta:
+        model = Wishlist
+        fields = ['product_id','qty']
+        widget = {
+            'product_id':forms.TextInput(attrs={'class':'form-control'}),
+            'qty':forms.NumberInput(attrs={'class':'form-control'})
         }

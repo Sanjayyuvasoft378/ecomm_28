@@ -1,20 +1,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {% extends 'app/base.html' %}
 {% load static %}
 {% block title %}Customer Login Here{% endblock title %}
@@ -39,21 +25,17 @@
                     {% for fm in form %}
                       {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors | striptags}}</small>
                       {% endfor %}
-
                       <small><a href="{% url 'password-reset' %}">Forgot Password</a></small> 
-
-
                       <input type = "submit" value="submit" class="btn btn-primary" />
                       <div class="text-center text-primary fw-bold">
                         <small>New User <a href="{% url 'registration' %}" class="text-danger">Create an Account</a></small>
                       </div> 
                       {% if form.non_field_errors %}
                         {% for error in form.non_field_errors %}
-                          <p  class="alert alert-danger my-3>{{error}}"</p>
+                          <p class="alert alert-danger my-3">{{error}}</p>
                         {% endfor %}
                       {% endif %}
                   </form>
-  
                 </div>
               </div>
             </div>

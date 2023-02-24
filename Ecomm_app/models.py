@@ -16,55 +16,55 @@ CATEGORY_CHOICE = (
 
 class Product(models.Model):
     title = models.CharField(max_length=100)
-    selling_price = models.FloatField()
-    discount_price = models.FloatField()
-    qty = models.IntegerField()
+    selling_price = models.CharField(max_length=20)
+    discount_price = models.CharField(max_length=20)
+    qty = models.CharField(max_length=20)
     description = models.TextField(max_length=200)
     composition = models.TextField(default='')
     prodapp = models.TextField(default='')
     category = models.CharField(choices=CATEGORY_CHOICE, max_length=2)
-    product_image = models.ImageField(upload_to="product")
+    product_image = models.ImageField(upload_to="product",blank = True, null=True)
     def __str__(self):
         return self.title
 
 
 STATE_CHOICES = (
-("Andhra Pradesh","Andhra Pradesh",),
-("Arunachal Pradesh ","Arunachal Pradesh "),
-("Assam","Assam"),
-("Bihar","Bihar"),
-("Chhattisgarh","Chhattisgarh"),
-("Goa","Goa"),
-("Gujarat","Gujarat"),
-("Haryana","Haryana"),
-("Himachal Pradesh","Himachal Pradesh"),
-("Jammu and Kashmir","Jammu and Kashmir"),
-("Jharkhand","Jharkhand"),
-("Karnataka","Karnataka"),
-("Kerala","Kerala"),
-("Madhya Pradesh","Madhya Pradesh"),
-("Maharashtra","Maharashtra"),
-("Manipur","Manipur"),
-("Meghalaya","Meghalaya"),
-("Mizoram","Mizoram"),
-("Nagaland","Nagaland"),
-("Odisha","Odisha"),
-("Punjab","Punjab"),
-("Rajasthan","Rajasthan"),
-("Sikkim","Sikkim"),
-("Tamil Nadu","Tamil Nadu"),
-("Telangana","Telangana"),
-("Tripura","Tripura"),
-("Uttar Pradesh","Uttar Pradesh"),
-("Uttarakhand","Uttarakhand"),
-("West Bengal","West Bengal"),
-("Andaman and Nicobar Islands","Andaman and Nicobar Islands"),
-("Chandigarh","Chandigarh"),
-("Dadra and Nagar Haveli","Dadra and Nagar Haveli"),
-("Daman and Diu","Daman and Diu"),
-("Lakshadweep","Lakshadweep"),
-("National Capital Territory of Delhi","National Capital Territory of Delhi"),
-("Puducherry","Puducherry")
+    ("Andhra Pradesh","Andhra Pradesh",),
+    ("Arunachal Pradesh ","Arunachal Pradesh "),
+    ("Assam","Assam"),
+    ("Bihar","Bihar"),
+    ("Chhattisgarh","Chhattisgarh"),
+    ("Goa","Goa"),
+    ("Gujarat","Gujarat"),
+    ("Haryana","Haryana"),
+    ("Himachal Pradesh","Himachal Pradesh"),
+    ("Jammu and Kashmir","Jammu and Kashmir"),
+    ("Jharkhand","Jharkhand"),
+    ("Karnataka","Karnataka"),
+    ("Kerala","Kerala"),
+    ("Madhya Pradesh","Madhya Pradesh"),
+    ("Maharashtra","Maharashtra"),
+    ("Manipur","Manipur"),
+    ("Meghalaya","Meghalaya"),
+    ("Mizoram","Mizoram"),
+    ("Nagaland","Nagaland"),
+    ("Odisha","Odisha"),
+    ("Punjab","Punjab"),
+    ("Rajasthan","Rajasthan"),
+    ("Sikkim","Sikkim"),
+    ("Tamil Nadu","Tamil Nadu"),
+    ("Telangana","Telangana"),
+    ("Tripura","Tripura"),
+    ("Uttar Pradesh","Uttar Pradesh"),
+    ("Uttarakhand","Uttarakhand"),
+    ("West Bengal","West Bengal"),
+    ("Andaman and Nicobar Islands","Andaman and Nicobar Islands"),
+    ("Chandigarh","Chandigarh"),
+    ("Dadra and Nagar Haveli","Dadra and Nagar Haveli"),
+    ("Daman and Diu","Daman and Diu"),
+    ("Lakshadweep","Lakshadweep"),
+    ("National Capital Territory of Delhi","National Capital Territory of Delhi"),
+    ("Puducherry","Puducherry")
 
 )
 
@@ -81,48 +81,24 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    
 class UserRegistration(models.Model):
     username = models.CharField(max_length=50)
     email = models.EmailField(max_length=254, unique=True)
     password1 = models.CharField(max_length=15)
     password2 = models.CharField(max_length=15)
-
     def __str__(self):
         return self.username
-    
-    
 class ContactUs(models.Model):
     username = models.CharField(max_length=100)
     email = models.EmailField(max_length=254, unique=True)
     subject = models.CharField(max_length=200)
     your_message = models.TextField(max_length=200)
-    
     def __str__(self):
         return self.username + self.email
     
 class AddToCartModel(models.Model):
-    title = models.CharField(max_length=20)
-    qty  = models.IntegerField()
-    discount_price = models.FloatField()
-    selling_price = models.FloatField()
-    description = models.TextField(max_length=200)
-    def __str__(self):
-        return self.title +" "+ self.description
-    
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE,null=True,blank=True)
+    qty = models.IntegerField()
     
 class Order(models.Model):
     productId = models.ForeignKey(Product, on_delete=models.CASCADE, default=True)
@@ -131,8 +107,6 @@ class Order(models.Model):
     price = models.FloatField()
     def __str__(self):
         return self.product_title
-        
-
 
 class UserManager(BaseUserManager):
     def create_user(self, email, name, tc, password=None, password2=None):
@@ -151,7 +125,6 @@ class UserManager(BaseUserManager):
         user.is_admin = True
         user.save(using=self._db)
         return user
-
 
 class User(AbstractBaseUser):
     email = models.EmailField(verbose_name='email',
@@ -186,17 +159,19 @@ class User(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
-    
-
 
 class Wishlist(models.Model):
-    title = models.CharField(max_length=20)
-    qty = models.IntegerField(default=1)
-    discount_price = models.IntegerField(default=0)
-    selling_price = models.IntegerField(default=0)
-    product_image = models.ImageField(upload_to='product')
-    def __str__(self):
-        return self.title #+' '+ self.qty
+    product_id = models.ForeignKey(Product,on_delete=models.CASCADE)
+    qty = models.IntegerField()
 
+class Staff(models.Model):
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+    email = models.EmailField(max_length=255)
+    mobile_no = models.CharField(max_length=10)
+    gender = models.CharField(max_length=20)
+
+    # def __str__(self):
+    #     return self.first_name
 
     

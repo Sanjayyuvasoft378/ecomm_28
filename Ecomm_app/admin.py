@@ -24,9 +24,9 @@ class CustomerAdmin(admin.ModelAdmin):
 
 
 
-# @admin.register(UserRegistration)
-# class UserRegistration(admin.ModelAdmin):
-#     list_display = ['id','username','email','password1','password2']
+@admin.register(UserRegistration)
+class UserRegistration(admin.ModelAdmin):
+    list_display = ['id','username','email','password1','password2']
 
 @admin.register(ContactUs)
 class ConatctAdmin(admin.ModelAdmin):
@@ -34,7 +34,7 @@ class ConatctAdmin(admin.ModelAdmin):
 
 @admin.register(AddToCartModel)
 class AddToCart(admin.ModelAdmin):
-    list_display = ['title','description','qty','selling_price','discount_price']
+    list_display = ['product_id','qty']
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
@@ -44,5 +44,4 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(Wishlist)
 class WishlistAdmin(admin.ModelAdmin):
-    list_display = ['title','qty','discount_price','product_image']
-
+    list_display = ['product_id','qty']

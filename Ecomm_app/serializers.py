@@ -21,31 +21,35 @@ class ContactUsSerializer(serializers.ModelSerializer):
 #         model = UserRegistration
 #         fields = ['username','email']
         
-        
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
         
+
 class AddToCartSerializer(serializers.ModelSerializer):
     class Meta:
         model = AddToCartModel
-        fields = ['title','qty','selling_price','discount_price','description']
+        fields = ['product_id','qty']    
         
-# class ChangePasswordSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = UserRegistration
-#         fields = ['password1','password2']
+class ChangePasswordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserRegistration
+        fields = ['password1','password2']
         
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['product_title','qty','price']
 
-
 class WishlistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Wishlist
-        # fileds =  ['title','discount_price','qty','product_image']
         fields = "__all__"
+
+class StaffSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Staff
+        fields = ['id','first_name','last_name','email','mobile_no','gender']
+
 

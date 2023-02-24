@@ -9,8 +9,7 @@ from .forms import *
 from django.contrib.auth import logout
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib import messages
-
-
+from django.views.decorators.csrf import csrf_exempt
     
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
@@ -39,7 +38,6 @@ def cartdata(request):
 def changepassword(request):
     return render(request,'app/changepasword.html')
 
-
 class CustomerRegistrationView(View):
     def get(self, request):
         form = UserRegistrationForm()
@@ -52,6 +50,14 @@ class CustomerRegistrationView(View):
         else:
             messages.warning(request,"Invalid Form Data !! please enter correct data....")
         return render(request,'app/registration.html',locals())
+
+class ChangUserPasswordAPI(APIView):
+    def post(self, request):
+        try:
+            data = request.data
+            form = UserRegistrationForm(data)
+        except Exception as e:
+            return JsonResponse({"msg":"Internal server error {}".format(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class CustomerLoginView(View):
     def get(self, request):
@@ -88,7 +94,6 @@ class CustomerLoginView(View):
 def logout_view(request):
     logout(request)
     return redirect('/ecomm_app/login/')
-    
   
 class ContactusAPI(APIView):
     def post(self, request):
@@ -121,7 +126,6 @@ class ContactusAPI(APIView):
         except Exception as e:
             return JsonResponse({"msg":"Internal server error {}".format(e)},safe=False,
                                 status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
 
 class CategoryView(View):
     def get(self, request, val):
@@ -147,12 +151,14 @@ class UpdateProfile(APIView):
     def post(self, request,pk):
         try:
             get_data = UserRegistration.objects.get(pk=pk)
-            serializers = UserRegistrationSerializer(instance=get_data, data=request.data)
-            if serializers.is_valid():
-                serializers.save()
-                return redirect('/ecomm_app/index/')
+            Serializer = UserRegistrationSerializer(instance=get_data, data=request.data)
+            if Serializer.is_valid():
+                Serializer.save()
+                # return redirect('/ecomm_app/index/')
+                return JsonResponse({"msg":"Profile update successfully"},safe=False)
             else:
-                return redirect('/ecomm_app/index/')
+                return JsonResponse({"msg":"Profile update failed"},safe=False)
+                # return redirect('/ecomm_app/index/')
         except Exception as e:
             return redirect('/ecomm_app/index/')
         
@@ -166,21 +172,6 @@ class ProductListAPI(APIView):
             return JsonResponse({"mesg":"Internal server error {}".format(e)},
                                 status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-class AddToCartAPI(APIView):
-    def post(self, request):
-        try:
-            Serializer = AddToCartSerializer(data=request.data)
-            if Serializer.is_valid():
-                Serializer.save()
-                # return redirect('/ecomm_app/cartlist/')
-                return JsonResponse({"msg":"data added into cart"})
-            else:
-                # return redirect('/ecomm_app/productlist/')
-                return JsonResponse({"msg":"data not added into cart"})
-        except Exception as e:
-            # return redirect('/ecomm_app/productlist/')
-            return JsonResponse({"msg":"data not  500 added into cart{}".format(e)})
-
 class ProfileViewAPI(APIView):
     def get(self, request,pk):
         try:
@@ -190,12 +181,13 @@ class ProfileViewAPI(APIView):
             return JsonResponse({"msg":"Internal server error {}".format(e)},
                                 safe=False,status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
 class ChangePasswordAPI(APIView):
     def post(self, request):
         Serializer = ChangePasswordSerializer(data=request.data, context={"user":request.user})
         if Serializer.is_valid(raise_exception=True):
             Serializer.save()
-            return redirect('/ecomm_app/userlogin/')
+            return redirect('/ecomm_app/accounts/login/')
         else:
             return render(request,'app/changepasword.html')
 
@@ -210,6 +202,7 @@ class OrderAPI(APIView):
                 return JsonResponse({"msg":"Invalid data"},safe=False)
         except Exception as e:
             return JsonResponse({"msg":"Internal server error {}".format(e)},safe=False)
+
 class orderlistapi(APIView):
     def get(self, request):
         try:
@@ -222,10 +215,9 @@ class orderlistapi(APIView):
 class CartList(APIView):
     def get(self, request):
         cart_data = AddToCartModel.objects.all()
-        # Serializer = AddToCartSerializer(cart_data, many=True)
+        Serializer = AddToCartSerializer(cart_data, many=True)
         return render(request,'app/cartlist.html',locals())
-        return JsonResponse(Serializer.data,safe=False)
-             
+        # return JsonResponse(Serializer.data,safe=False)
 
 def filter(request):
     if request.method=="POST":
@@ -241,21 +233,21 @@ def filter(request):
             return JsonResponse({"msg":"Invalid input"})
     else:
         return JsonResponse({"msg":"invalid method"})
-    
+
 class AddToWishlistAPI(APIView):
     def post(self, request):
         try:
-            Serializer = AddToCartSerializer(data=request.data)
-            if Serializer:
-                if Serializer.is_valid():
-                    Serializer.save()
-                    return JsonResponse({"msg":"Product added into wishlist"},safe=False)
-                else:
-                    return JsonResponse({"msg":"Invalid data"})
+            Serializer = WishlistSerializer(data=request.data)
+            if Serializer.is_valid():
+                product_id = request.POST.get('product_id')
+                qty = request.POST.get('qty')
+                item = Wishlist(product_id=product_id, qty=qty)
+                item.save()
+                return JsonResponse({"msg":"data added into wishlist successfully"})
             else:
-                return JsonResponse({"msg":"Serializer data invalid"})
+                return JsonResponse({"msg":"invalid data"})
         except Exception as e:
-            return JsonResponse({"msg":"Internal server error {}".format(e)},safe=False)
+            return JsonResponse({"msg":"internal server error {}".format(e)})
 
 class WishlistAPI(APIView):
     def get(self, request):
@@ -267,13 +259,32 @@ class WishlistAPI(APIView):
         except Exception as e:
             return JsonResponse({"msg":"Internal server error {}".format(e)}
                                 ,safe=False,status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
+                
+class Add_to_cartAPI(APIView):
+    def post(self, request):
+        try:
+            # Data= request.data
+            Serializer = AddToCartSerializer(data = request.data)
+            if Serializer.is_valid():
+                product_id = request.POST.get('product_id')
+                qty = request.POST.get('qty')
+                item = AddToCartModel(product_id = product_id, qty = qty)
+                item.save()
+                return JsonResponse({"msg":"data added into cart successfully"})
+                # messages.success(request,"data added into cart successfully")
+            else:
+                return JsonResponse({"msg":"invalid data"})
+                # messages.warning(request,"Invalid Data")
+            # return render(request,'app/cartlist.html',locals())
+        except Exception as e:
+            return JsonResponse({"msg":"Internal server error {}".format(e)},safe=False)
 
 
 class ProfileView(View):
     def get(self, request):
         form = CustomerProfileForm()
-        return render(request,'app/profile.html',locals())
+        return JsonResponse(form.data)
+        # return render(request,'app/profile.html',locals())
     def post(self,request):
         form = CustomerProfileForm(request.POST)
         if form.is_valid():
@@ -284,17 +295,125 @@ class ProfileView(View):
             mobileNo = form.cleaned_data['mobileNo']
             state = form.cleaned_data['state']
             zipcode = form.cleaned_data['zipcode']
-
-
-            reg = Customer(user=user,name=name,locality=locality, mobileNo=mobileNo,city=city,state=state,zipcode=zipcode)
+            reg = Customer(user=user,name=name,locality=locality, mobileNo=mobileNo,city=city,
+                           state=state,zipcode=zipcode)
             reg.save()
             messages.success(request,"congratulations! profile data save successfully")
         else:
             messages.warning(request,"Invalid Data")
         return render(request,'app/profile.html',locals())
 
-
-
 def address(request):
     add = Customer.objects.filter(user = request.user)
     return render(request, 'app/address.html',locals())
+
+
+
+
+
+###########################################################
+
+class StaffAPI(APIView):
+    def post(self, request):
+        try:
+            Serializer = StaffSerializer(data=request.data)
+            if Staff.objects.filter(**request.data).exists():
+                raise serializers.ValidationError("already exists")
+            if Serializer.is_valid(raise_exception=True):
+                Serializer.save() 
+                return JsonResponse({"msg":"data added successfully"},safe=False,status=200)
+            else:
+                return JsonResponse({"msg":"Invalid input"},safe=False)
+        except Exception as e:
+            return JsonResponse({"msg":"Internal server error {}".format(e)},safe=False,status=500)
+        
+    def get(self, request):
+        try:
+            item = Staff.objects.all()
+            Serializer = StaffSerializer(item, many=True)        
+            return JsonResponse(Serializer.data,safe=False)
+        except Exception as e:
+            return JsonResponse({"msg":"Internal server eror {}".format(e)},safe=False, status=500)
+
+    def delete(self, request, pk):
+        item = Staff.objects.filter(id=pk)
+        item.delete()
+        return JsonResponse({"msg":"data deleted successfully"},safe=False, status=200)
+
+    def put(self, request, pk):
+        item = Staff.objects.get(pk=pk)
+        Serializer = StaffSerializer(instance=item, data=request.data)
+        if Staff.objects.filter(**request.data).exists():
+            raise serializers.ValidationError("already exist")
+        if Serializer.is_valid():
+            Serializer.save()
+            return JsonResponse({"msg":"data updated successfully"},safe=False,status=200)
+        else:
+            return JsonResponse({"msg":"Invalid data"},safe=False,status=500)
+        
+class ProductAPI(APIView):
+    def post(self, request):
+        Serializer = ProductSerializer(data = request.data)
+        if Product.objects.filter(**request.data).exists():
+            raise serializers.ValidationError("product already exists")
+        if Serializer.is_valid():
+            Serializer.save()
+            return JsonResponse({"msg":"Data added successfully"},safe=False)
+        else:
+            return JsonResponse({"msg":"invalid data"},safe=False)
+    def get(self, request):
+        item = Product.objects.all()
+        Serializer = ProductSerializer(item, many= True)
+        return JsonResponse(Serializer.data, safe=False)
+    def delete(self, request, pk):
+        item = Product.objects.filter(pk=pk)
+        item.delete()
+        return JsonResponse({"msg":"data delete succesfully"},safe=False)
+    def put(self, request,pk):
+        item = Product.objects.get(id=pk)
+        Serializer = ProductSerializer(instance=item,data=request.data)
+        if Product.objects.filter(**request.data).exists():
+            raise serializers.ValidationError("Product already exists")
+        if Serializer.is_valid():
+            Serializer.save()
+            return JsonResponse({"msg":"data added successfully"},safe=False)
+        else:
+            return JsonResponse({"msg":"Invalid data"},safe=False)
+        
+class add_to_cart_data(APIView):
+    def get(self, request):
+        item = AddToCartModel.objects.all()
+        Serializer = AddToCartSerializer(item,many=True)
+        import pdb ; pdb.set_trace()
+        return JsonResponse(Serializer.data,safe=False)
+    def post(self, request):
+        try:
+            form = AddToCartForm(request.POST)
+            if form.is_valid():
+                product_id = form.cleaned_data['product_id']
+                qty = form.cleaned_data['qty']
+                item = AddToCartModel(product_id=product_id, qty=qty)
+                item.save()
+                return JsonResponse({"msg":"data added successfully"})
+            else:
+                return JsonResponse({"msg":"form data invalid"})
+        except Exception as e:
+            return JsonResponse({"msg":"Internal server error {}".format(e)},safe=False)
+
+class AddToWishlistAPI(APIView):
+    def post(self, request):
+        try:
+            form = AddToWishlistForm(request.POST)
+            if form.is_valid():
+                product_id = form.cleaned_data['product_id']
+                qty = form.cleaned_data['qty']
+                item = Wishlist(product_id=product_id, qty=qty)
+                item.save()
+                return JsonResponse({"msg":"data added successfully"})
+            else:
+                return JsonResponse({"msg":"form data invalid"})
+        except Exception as e:
+            return JsonResponse({"msg":"Internal server error {}".format(e)},safe=False)
+                
+
+        
