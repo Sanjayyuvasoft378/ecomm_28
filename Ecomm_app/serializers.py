@@ -47,9 +47,17 @@ class WishlistSerializer(serializers.ModelSerializer):
         model = Wishlist
         fields = "__all__"
 
-class StaffSerializer(serializers.ModelSerializer):
+
+class ProductReviewSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Staff
-        fields = ['id','first_name','last_name','email','mobile_no','gender']
+        model= ProductReviewModel
+        fields = '__all__'
+        
+        
+class ProductCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductCommentModel
+        fields = '__all__'
+
 
 

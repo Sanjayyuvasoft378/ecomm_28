@@ -1,0 +1,320 @@
+
+            <div class="content-area">
+
+              <div class="mr-breadcrumb">
+                <div class="row">
+                  <div class="col-lg-12">
+                      <h4 class="heading">Add New Coupon <a class="add-btn" href="https://product.geniusocean.com/geniuscart/admin/coupon"><i class="fas fa-arrow-left"></i> Back</a></h4>
+                      <ul class="links">
+                        <li>
+                          <a href="https://product.geniusocean.com/geniuscart/admin">Dashboard </a>
+                        </li>
+                        <li>
+                          <a href="https://product.geniusocean.com/geniuscart/admin/coupon">Coupons</a>
+                        </li>
+                        <li>
+                          <a href="https://product.geniusocean.com/geniuscart/admin/coupon/create">Add New Coupon</a>
+                        </li>
+                      </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="add-product-content1 add-product-content2">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="product-description">
+                      <div class="body-area">
+                        <div class="gocover" style="background: url(https://product.geniusocean.com/geniuscart/assets/images/1564224329loading3.gif) no-repeat scroll center center rgba(45, 45, 45, 0.5);"></div>
+                        <div class="alert alert-success validation" style="display: none;">
+      <button type="button" class="close alert-close"><span>×</span></button>
+            <p class="text-left"></p> 
+      </div>
+      <div class="alert alert-danger validation" style="display: none;">
+      <button type="button" class="close alert-close"><span>×</span></button>
+            <ul class="text-left">
+            </ul>
+      </div> 
+                      <form id="geniusform" action="https://product.geniusocean.com/geniuscart/admin/coupon/create" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="hETZnKikQsjo4ztPPSTSZ8YHOGz9GTxxf18c2mPJ">
+
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="left-area">
+                                <h4 class="heading">Code *</h4>
+                                <p class="sub-heading">(In Any Language)</p>
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                            <input type="text" class="input-field" name="code" placeholder="Enter Code" required="" value="">
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="left-area">
+                                <h4 class="heading">Allow Product Type*</h4>
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                              <select  name="coupon_type" required="" id="select_type_coupon">
+                                  <option value="" selected>Select Type</option>
+                                  <option value="category">Category</option>
+                                  <option value="sub_category">Sub Category</option>
+                                  <option value="child_category">Child Category</option>
+                                   
+                                </select>
+                          </div>
+                        </div>
+
+                        <div class="row d-none" id="category">
+                          <div class="col-lg-4">
+                            <div class="left-area">
+                                <h4 class="heading">Category*</h4>
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                              <select  name="category">
+                                  <option value="">Select Category</option>
+                                                                          <option value="4">Electronic</option>
+                                                                          <option value="5">Fashion &amp; Beauty</option>
+                                                                          <option value="6">Camera &amp; Photo</option>
+                                                                          <option value="7">Smart Phone &amp; Table</option>
+                                                                          <option value="8">Sport &amp; Outdoor</option>
+                                                                          <option value="9">Jewelry &amp; Watches</option>
+                                                                          <option value="10">Health &amp; Beauty</option>
+                                                                          <option value="11">Books &amp; Office</option>
+                                                                          <option value="12">Toys &amp; Hobbies</option>
+                                                                          <option value="15">Automobiles</option>
+                                                                          <option value="16">Home decoration</option>
+                                                                          <option value="17">Portable &amp; Personal</option>
+                                                                          <option value="18">Outdoor, Recreation</option>
+                                                                          <option value="19">Surveillance Safety</option>
+                                                                          <option value="20">إلكتروني</option>
+                                                                          <option value="21">الجمال الأزياء</option>
+                                                                          <option value="22">الكاميرا والصور</option>
+                                                                          <option value="23">الهاتف الذكي والجدول</option>
+                                                                          <option value="24">رياضة وخارجية</option>
+                                                                          <option value="25">المجوهرات والساعات</option>
+                                                                          <option value="26">الصحة والجمال</option>
+                                                                          <option value="27">الكتب والمكاتب</option>
+                                                                          <option value="28">ألعاب وهوايات</option>
+                                                                          <option value="29">كتب</option>
+                                                                          <option value="30">سيارات</option>
+                                                                          <option value="31">ديكور المنزل</option>
+                                                                          <option value="32">المحمولة والشخصية</option>
+                                                                          <option value="33">الاستجمام في الهواء الطلق</option>
+                                                                          <option value="34">سلامة المراقبة</option>
+                                                                    </select>
+                          </div>
+                        </div>
+
+                        <div class="row d-none" id="sub_category">
+                          <div class="col-lg-4">
+                            <div class="left-area">
+                                <h4 class="heading">Subcategory*</h4>
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                              <select  name="sub_category" >
+                                  <option value="">Select Subcategory</option>
+                                                                          <option value="2">TELEVISION</option>
+                                                                          <option value="3">REFRIGERATOR</option>
+                                                                          <option value="4">WASHING MACHINE</option>
+                                                                          <option value="5">AIR CONDITIONERS</option>
+                                                                          <option value="6">ACCESSORIES</option>
+                                                                          <option value="7">BAGS</option>
+                                                                          <option value="8">CLOTHINGS</option>
+                                                                          <option value="9">SHOES</option>
+                                                                          <option value="10">APPLE</option>
+                                                                          <option value="11">SAMSUNG</option>
+                                                                          <option value="12">LG</option>
+                                                                          <option value="13">SONY</option>
+                                                                          <option value="14">DSLR</option>
+                                                                          <option value="15">Camera Phone</option>
+                                                                          <option value="16">Action Camera</option>
+                                                                          <option value="17">Digital Camera</option>
+                                                                          <option value="18">التلفاز</option>
+                                                                          <option value="19">ثلاجة
+</option>
+                                                                          <option value="20">غسالة</option>
+                                                                          <option value="21">مكيفات الهواء
+</option>
+                                                                          <option value="22">مستلزمات</option>
+                                                                          <option value="23">أكياس</option>
+                                                                          <option value="24">ملابس
+</option>
+                                                                          <option value="25">أحذية</option>
+                                                                          <option value="26">تفاحة</option>
+                                                                          <option value="27">سامسونج</option>
+                                                                          <option value="28">إل جي
+</option>
+                                                                          <option value="29">سوني</option>
+                                                                          <option value="30">الدي اس الر</option>
+                                                                          <option value="31">هاتف ذو كاميرا</option>
+                                                                          <option value="32">عمل الكاميرا
+</option>
+                                                                          <option value="33">كاميرا رقمية</option>
+                                                                    </select>
+                          </div>
+                        </div>
+
+                        <div class="row d-none" id="child_category">
+                          <div class="col-lg-4">
+                            <div class="left-area">
+                                <h4 class="heading">Child Category*</h4>
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                              <select  name="child_category" >
+                                  <option value="">Select Child Category</option>
+                                                                          <option value="1">LCD TV</option>
+                                                                          <option value="2">LED TV</option>
+                                                                          <option value="3">Curved TV</option>
+                                                                          <option value="4">Plasma TV</option>
+                                                                          <option value="5">Top Freezer</option>
+                                                                          <option value="6">Side-by-Side</option>
+                                                                          <option value="7">Counter-Depth</option>
+                                                                          <option value="8">Mini Fridge</option>
+                                                                          <option value="9">Front Loading</option>
+                                                                          <option value="10">Top Loading</option>
+                                                                          <option value="11">Washer Dryer Combo</option>
+                                                                          <option value="12">Laundry Center</option>
+                                                                          <option value="13">Central Air</option>
+                                                                          <option value="14">Window Air</option>
+                                                                          <option value="15">Portable Air</option>
+                                                                          <option value="16">Hybrid Air</option>
+                                                                          <option value="17">تلفزيون ال سي دي</option>
+                                                                          <option value="18">تلفزيون LED
+</option>
+                                                                          <option value="19">التلفزيون المنحني
+</option>
+                                                                          <option value="20">تلفزيون بلازما
+</option>
+                                                                          <option value="21">الفريزر العلوي
+</option>
+                                                                          <option value="22">جنباألى جنب
+</option>
+                                                                          <option value="23">مكافحة العمق
+</option>
+                                                                          <option value="24">ثلاجة صغيرة
+</option>
+                                                                          <option value="25">تحميل امامي
+</option>
+                                                                          <option value="26">تحميل اعلى
+</option>
+                                                                          <option value="27">غسالة الصحون كومبو
+</option>
+                                                                          <option value="28">مركز الغسيل
+</option>
+                                                                          <option value="29">سنترال اير
+</option>
+                                                                          <option value="30">نافذة الهواء
+</option>
+                                                                          <option value="31">الهواء المحمولة
+</option>
+                                                                          <option value="32">الهواء الهجين
+</option>
+                                                                    </select>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="left-area">
+                                <h4 class="heading">Type *</h4>
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                              <select id="type" name="type" >
+                                <option value="">Choose a type</option>
+                                <option value="0">Discount By Percentage</option>
+                                <option value="1">Discount By Amount</option>
+                              </select>
+                          </div>
+                        </div>
+
+                        <div class="row hidden">
+                          <div class="col-lg-4">
+                            <div class="left-area">
+                                <h4 class="heading"></h4>
+                            </div>
+                          </div>
+                          <div class="col-lg-3">
+                            <input type="text" class="input-field less-width" name="price" placeholder="" required="" value=""><span></span>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="left-area">
+                                <h4 class="heading">Quantity *</h4>
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                              <select id="times" required="">
+                                <option value="0">Unlimited</option>
+                                <option value="1">Limited</option>
+                              </select>
+                          </div>
+                        </div>
+
+                        <div class="row hidden">
+                          <div class="col-lg-4">
+                            <div class="left-area">
+                                <h4 class="heading">Value *</h4>
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                            <input type="text" class="input-field less-width" name="times" placeholder="Enter Value" value=""><span></span>
+                          </div>
+                        </div>
+
+
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="left-area">
+                                <h4 class="heading">Start Date *</h4>
+                                <p class="sub-heading">(In Any Language)</p>
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                            <input type="text" class="input-field" name="start_date" autocomplete="off" id="from" placeholder="Select a date" required="" value="">
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="left-area">
+                                <h4 class="heading">End Date *</h4>
+                                <p class="sub-heading">(In Any Language)</p>
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                            <input type="text" class="input-field" name="end_date" autocomplete="off" id="to" placeholder="Select a date" required="" value="">
+                          </div>
+                        </div>
+
+                        <br>
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="left-area">
+                              
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                            <button class="addProductSubmit-btn" type="submit">Create Coupon</button>
+                          </div>
+                        </div>
+                      </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+					<!-- Main Content Area End -->
+					</div>
+				</div>
+			</div>

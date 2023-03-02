@@ -126,13 +126,13 @@
 													<ul>
 														<h5>Welcome!</h5>
 															<li>
-																<a href="https://product.geniusocean.com/geniuscart/admin/profile"><i class="fas fa-user"></i> Edit Profile</a>
+																<a href="{% url 'edit-profile' %}"><i class="fas fa-user"></i> Edit Profile</a>
 															</li>
 															<li>
-																<a href="https://product.geniusocean.com/geniuscart/admin/password"><i class="fas fa-cog"></i> Change Password</a>
+																<a href="{% url 'change-password' %}"><i class="fas fa-cog"></i> Change Password</a>
 															</li>
 															<li>
-																<a href="https://product.geniusocean.com/geniuscart/admin/logout"><i class="fas fa-power-off"></i> Logout</a>
+																<a href="#"><i class="fas fa-power-off"></i> Logout</a>
 															</li>
 														</ul>
 											</div>
@@ -269,10 +269,10 @@
         </a>
         <ul class="collapse list-unstyled" id="menu4" data-parent="#accordion">
             <li>
-                <a href="{% url 'product-reviews' %}"><span>Product Reviews</span></a>
+                <a href="{% url 'product-review-list' %}"><span>Product Reviews</span></a>
             </li>
             <li>
-                <a href="{% url 'product-comments' %}"><span>Comments</span></a>
+                <a href="{% url 'product-comment-list' %}"><span>Comments</span></a>
             </li>
             <li>
                 <a href="{% url 'product-reports' %}"><span>Reports</span></a>
@@ -290,7 +290,7 @@
         </a>
         <ul class="collapse list-unstyled" id="menu3" data-parent="#accordion">
             <li>
-                <a href="https://product.geniusocean.com/geniuscart/admin/users"><span>Customers List</span></a>
+                <a href="{% url 'customer-list' %}"><span>Customers List</span></a>
             </li>
           
             {% comment %} <li>
@@ -316,7 +316,7 @@
         </ul>
     </li> {% endcomment %}
 
-    <li>
+    {% comment %} <li>
         <a href="#vendor" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
             <i class="icofont-ui-user-group"></i>Vendors
         </a>
@@ -326,14 +326,14 @@
             </li>
             <li>
                 <a href="https://product.geniusocean.com/geniuscart/admin/vendors/withdraws"><span>Withdraws</span></a>
-            </li>
+            </li> {% endcomment %}
             {% comment %} <li>
                 <a href="https://product.geniusocean.com/geniuscart/admin/vendor/color"><span>Default Background</span></a>
             </li> {% endcomment %}
-        </ul>
-    </li>
+        {% comment %} </ul>
+    </li> {% endcomment %}
 
-    <li>
+    {% comment %} <li>
         <a href="#vendorSubs" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
             <i class="icofont-user-suited"></i>Vendor Subscriptions
         </a>
@@ -345,9 +345,9 @@
                 <a href="https://product.geniusocean.com/geniuscart/admin/vendors/subs/pending"><span>Pending Subscriptions</span></a>
             </li>
         </ul>
-    </li>
+    </li> {% endcomment %}
 
-    <li>
+    {% comment %} <li>
         <a href="#vendor1" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
                 <i class="icofont-verification-check"></i>Vendor Verifications
         </a>
@@ -359,15 +359,15 @@
                 <a href="https://product.geniusocean.com/geniuscart/admin/verificatons/pending"><span>Pending Verifications</span></a>
             </li>
         </ul>
-    </li>
+    </li> {% endcomment %}
 
-    <li>
+    {% comment %} <li>
         <a href="https://product.geniusocean.com/geniuscart/admin/subscription" class=" wave-effect"><i class="fas fa-dollar-sign"></i>Vendor Subscription Plans</a>
     </li>
 
     <li>
         <a href="https://product.geniusocean.com/geniuscart/admin/subscription" class=" wave-effect"><i class="fas fa-dollar-sign"></i>Vendor Subscription Plans</a>
-    </li>
+    </li> {% endcomment %}
 
     <li>
         <a href="#msg" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
@@ -389,19 +389,10 @@
         </a>
         <ul class="collapse list-unstyled" id="blog" data-parent="#accordion">
             <li>
-                <a href="https://product.geniusocean.com/geniuscart/admin/blog/category"><span>Categories</span></a>
-            </li>
-            <li>
                 <a href="https://product.geniusocean.com/geniuscart/admin/blog"><span>Posts</span></a>
-            </li>
-            <li>
-                <a href="https://product.geniusocean.com/geniuscart/admin/blog/blog-settings"><span>Blog Settings</span></a>
             </li>
         </ul>
     </li>
-
-   
-
     <li>
         <a href="#homepage" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
             <i class="fas fa-edit"></i>Home Page Settings
@@ -410,49 +401,19 @@
             <li>
                 <a href="https://product.geniusocean.com/geniuscart/admin/slider"><span>Sliders</span></a>
             </li>
-
-            <li>
-                <a href="https://product.geniusocean.com/geniuscart/admin/arrival"><span>Arrival Section</span></a>
-            </li>
             <li>
                 <a href="https://product.geniusocean.com/geniuscart/admin/general-settings/deal_of_the_day"><span>Deal of the day</span></a>
-            </li>
-
-
-            <li>
-                <a href="https://product.geniusocean.com/geniuscart/admin/partner"><span>Partners</span></a>
-            </li>
-            <li>
-                <a href="https://product.geniusocean.com/geniuscart/admin/page-settings/customize"><span>Home Page Customization</span></a>
             </li>
         </ul>
     </li>
 
     <li>
-        <a href="#menu" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
-            <i class="fas fa-file-code"></i>Menu Page Settings
-        </a>
         <ul class="collapse list-unstyled" id="menu" data-parent="#accordion">
-            <li>
-                <a href="https://product.geniusocean.com/geniuscart/admin/faq"><span>FAQ Page</span></a>
-            </li>
             <li>
                 <a href="https://product.geniusocean.com/geniuscart/admin/page-settings/contact"><span>Contact Us Page</span></a>
             </li>
-            <li>
-                <a href="https://product.geniusocean.com/geniuscart/admin/page"><span>Other Pages</span></a>
-            </li>
-            <li>
-                <a href="https://product.geniusocean.com/geniuscart/admin/page/banner"><span>Other Page Banner</span></a>
-            </li>
-            <li>
-                <a href="https://product.geniusocean.com/geniuscart/admin/menu/links"><span>Customize Menu Links</span></a>
-            </li>
         </ul>
     </li>
-
-    
-
     <li>
         <a href="#payments" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
             <i class="fas fa-file-code"></i>Payment Settings
@@ -461,11 +422,11 @@
             <li><a href="https://product.geniusocean.com/geniuscart/admin/payment-informations"><span>Payment Information</span></a></li>
             <li><a href="https://product.geniusocean.com/geniuscart/admin/paymentgateway"><span>Payment Gateways</span></a></li>
             <li><a href="https://product.geniusocean.com/geniuscart/admin/currency"><span>Currencies</span></a></li>
-            <li><a href="https://product.geniusocean.com/geniuscart/admin/rewards"><span>Reward Information</span></a></li>
+            {% comment %} <li><a href="https://product.geniusocean.com/geniuscart/admin/rewards"><span>Reward Information</span></a></li> {% endcomment %}
         </ul>
     </li>
 
-    <li>
+    {% comment %} <li>
         <a href="#socials" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
             <i class="fas fa-paper-plane"></i>Social Settings
         </a>
@@ -474,13 +435,13 @@
                 <li><a href="https://product.geniusocean.com/geniuscart/admin/social/facebook"><span>Facebook Login</span></a></li>
                 <li><a href="https://product.geniusocean.com/geniuscart/admin/social/google"><span>Google Login</span></a></li>
         </ul>
-    </li>
+    </li> {% endcomment %}
 
     
 
-    <li>
+    {% comment %} <li>
         <a href="https://product.geniusocean.com/geniuscart/admin/fonts" class=" wave-effect"><i class="fa fa-font"></i>Font Option</a>
-    </li>
+    </li> {% endcomment %}
 
     <li>
         <a href="#seoTools" class="accordion-toggle wave-effect" data-toggle="collapse" aria-expanded="false">
@@ -488,7 +449,7 @@
         </a>
         <ul class="collapse list-unstyled" id="seoTools" data-parent="#accordion">
             <li>
-                <a href="https://product.geniusocean.com/geniuscart/admin/products/popular/30"><span>Popular Products</span></a>
+                <a href="{% url 'popular-product' %}"><span>Popular Products</span></a>
             </li>
           
         </ul>
@@ -496,11 +457,11 @@
 
 
     <li>
-        <a href="https://product.geniusocean.com/geniuscart/admin/staff" class=" wave-effect"><i class="fas fa-user-secret"></i>Manage Staffs</a>
+        <a href="{% url 'staff' %}" class=" wave-effect"><i class="fas fa-user-secret"></i>Manage Staffs</a>
     </li>
 
     <li>
-        <a href="https://product.geniusocean.com/geniuscart/admin/subscribers" class=" wave-effect"><i class="fas fa-users-cog mr-2"></i>Subscribers</a>
+        <a href="#" class=" wave-effect"><i class="fas fa-users-cog mr-2"></i>Subscribers</a>
     </li>
 
 
@@ -585,7 +546,7 @@
                 <div class="left">
                     <h5 class="title">Total Products!</h5>
                     <span class="number">56</span>
-                    <a href="https://product.geniusocean.com/geniuscart/admin/products" class="link">View All</a>
+                    <a href="{% url 'product-list' %}" class="link">View All</a>
                 </div>
                 <div class="right d-flex align-self-center">
                     <div class="icon">
@@ -599,7 +560,7 @@
                 <div class="left">
                     <h5 class="title">Total Customers!</h5>
                     <span class="number">117</span>
-                    <a href="https://product.geniusocean.com/geniuscart/admin/users" class="link">View All</a>
+                    <a href="{% url 'customer-list' %}" class="link">View All</a>
                 </div>
                 <div class="right d-flex align-self-center">
                     <div class="icon">
@@ -613,7 +574,7 @@
                 <div class="left">
                     <h5 class="title">Total Posts!</h5>
                     <span class="number">30</span>
-                    <a href="https://product.geniusocean.com/geniuscart/admin/blog" class="link">View All</a>
+                    <a href="{% url 'posts' %}" class="link">View All</a>
                 </div>
                 <div class="right d-flex align-self-center">
                     <div class="icon">

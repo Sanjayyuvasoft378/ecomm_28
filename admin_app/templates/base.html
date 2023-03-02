@@ -154,7 +154,7 @@
                         class="dropdownmenu-wrapper"
                         data-href="https://product.geniusocean.com/geniuscart/admin/product/notf/show"
                         id="product-notf-show"
-                      ></div>
+                       ></div>
                     </div>
                   </li>
 
@@ -209,19 +209,19 @@
                           <h5>Welcome!</h5>
                           <li>
                             <a
-                              href="https://product.geniusocean.com/geniuscart/admin/profile"
+                              href="{% url 'edit-profile' %}"
                               ><i class="fas fa-user"></i> Edit Profile</a
                             >
                           </li>
                           <li>
                             <a
-                              href="https://product.geniusocean.com/geniuscart/admin/password"
+                              href="{% url 'change-password' %}"
                               ><i class="fas fa-cog"></i> Change Password</a
                             >
                           </li>
                           <li>
                             <a
-                              href="https://product.geniusocean.com/geniuscart/admin/logout"
+                              href="#"
                               ><i class="fas fa-power-off"></i> Logout</a
                             >
                           </li>
@@ -265,21 +265,21 @@
                   </li>
                   <li>
                     <a
-                      href="https://product.geniusocean.com/geniuscart/admin/orders?status=processing"
+                      href="{% url 'processing-order' %}"
                     >
                       Processing Orders</a
                     >
                   </li>
                   <li>
                     <a
-                      href="https://product.geniusocean.com/geniuscart/admin/orders?status=completed"
+                      href="{% url 'completed-order' %}"
                     >
                       Completed Orders</a
                     >
                   </li>
                   <li>
                     <a
-                      href="https://product.geniusocean.com/geniuscart/admin/orders?status=declined"
+                      href="{% url 'decliend-order' %}"
                     >
                       Declined Orders</a
                     >
@@ -370,13 +370,13 @@
                 >
                   <li>
                     <a
-                      href="{% url 'product-reviews' %}"
+                      href="{% url 'product-review-list' %}"
                       ><span>Product Reviews</span></a
                     >
                   </li>
                   <li>
                     <a
-                      href="{% url 'product-comments' %}"
+                      href="{% url 'product-comment-list' %}"
                       ><span>Comments</span></a
                     >
                   </li>
@@ -405,102 +405,15 @@
                   id="menu3"
                   data-parent="#accordion">
                   <li>
-                    <a href="https://product.geniusocean.com/geniuscart/admin/users"
+                    <a href="{% url 'customer-list' %}"
                       ><span>Customers List</span></a>
                   </li>
                   
                 </ul>
               </li>
-              <li>
-                <a
-                  href="#vendor"
-                  class="accordion-toggle wave-effect"
-                  data-toggle="collapse"
-                  aria-expanded="false"
-                >
-                  <i class="icofont-ui-user-group"></i>Vendors
-                </a>
-                <ul
-                  class="collapse list-unstyled"
-                  id="vendor"
-                  data-parent="#accordion"
-                >
-                  <li>
-                    <a
-                      href="https://product.geniusocean.com/geniuscart/admin/vendors"
-                      ><span>Vendors List</span></a
-                    >
-                  </li>
-                 
-                </ul>
-              </li>
+            
+             
 
-              <li>
-                <a
-                  href="#vendorSubs"
-                  class="accordion-toggle wave-effect"
-                  data-toggle="collapse"
-                  aria-expanded="false"
-                >
-                  <i class="icofont-user-suited"></i>Vendor Subscriptions
-                </a>
-                <ul
-                  class="collapse list-unstyled"
-                  id="vendorSubs"
-                  data-parent="#accordion"
-                >
-                  <li>
-                    <a
-                      href="https://product.geniusocean.com/geniuscart/admin/vendors/subs/completed"
-                      ><span>Completed Subscriptions</span></a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://product.geniusocean.com/geniuscart/admin/vendors/subs/pending"
-                      ><span>Pending Subscriptions</span></a
-                    >
-                  </li>
-                </ul>
-              </li>
-
-              <li>
-                <a
-                  href="#vendor1"
-                  class="accordion-toggle wave-effect"
-                  data-toggle="collapse"
-                  aria-expanded="false"
-                >
-                  <i class="icofont-verification-check"></i>Vendor Verifications
-                </a>
-                <ul
-                  class="collapse list-unstyled"
-                  id="vendor1"
-                  data-parent="#accordion"
-                >
-                  <li>
-                    <a
-                      href="https://product.geniusocean.com/geniuscart/admin/verificatons/all"
-                      ><span>All Verifications</span></a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://product.geniusocean.com/geniuscart/admin/verificatons/pending"
-                      ><span>Pending Verifications</span></a
-                    >
-                  </li>
-                </ul>
-              </li>
-
-              <li>
-                <a
-                  href="https://product.geniusocean.com/geniuscart/admin/subscription"
-                  class="wave-effect"
-                  ><i class="fas fa-dollar-sign"></i>Vendor Subscription
-                  Plans</a
-                >
-              </li>
 
               <li>
                 <a
@@ -547,24 +460,10 @@
                       ><span>Sliders</span></a
                     >
                   </li>
-
-                  <li>
-                    <a
-                      href="https://product.geniusocean.com/geniuscart/admin/arrival"
-                      ><span>Arrival Section</span></a
-                    >
-                  </li>
                   <li>
                     <a
                       href="https://product.geniusocean.com/geniuscart/admin/general-settings/deal_of_the_day"
                       ><span>Deal of the day</span></a
-                    >
-                  </li>
-
-                  <li>
-                    <a
-                      href="https://product.geniusocean.com/geniuscart/admin/partner"
-                      ><span>Partners</span></a
                     >
                   </li>
                 </ul>
@@ -584,12 +483,7 @@
                   id="menu"
                   data-parent="#accordion"
                 >
-                  <li>
-                    <a
-                      href="https://product.geniusocean.com/geniuscart/admin/faq"
-                      ><span>FAQ Page</span></a
-                    >
-                  </li>
+                  
                   <li>
                     <a
                       href="https://product.geniusocean.com/geniuscart/admin/page-settings/contact"
@@ -634,49 +528,11 @@
                       ><span>Currencies</span></a
                     >
                   </li>
-                  <li>
-                    <a
-                      href="https://product.geniusocean.com/geniuscart/admin/rewards"
-                      ><span>Reward Information</span></a
-                    >
-                  </li>
+                  
                 </ul>
               </li>
 
-              <li>
-                <a
-                  href="#socials"
-                  class="accordion-toggle wave-effect"
-                  data-toggle="collapse"
-                  aria-expanded="false"
-                >
-                  <i class="fas fa-paper-plane"></i>Social Settings
-                </a>
-                <ul
-                  class="collapse list-unstyled"
-                  id="socials"
-                  data-parent="#accordion"
-                >
-                  <li>
-                    <a
-                      href="https://product.geniusocean.com/geniuscart/admin/social-link"
-                      ><span>Social Links</span></a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://product.geniusocean.com/geniuscart/admin/social/facebook"
-                      ><span>Facebook Login</span></a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://product.geniusocean.com/geniuscart/admin/social/google"
-                      ><span>Google Login</span></a
-                    >
-                  </li>
-                </ul>
-              </li>
+  
               <li>
                
                 <ul
@@ -686,7 +542,7 @@
                 >
                   <li>
                     <a
-                      href="https://product.geniusocean.com/geniuscart/admin/products/popular/30"
+                      href="{% url 'popular-product' %}"
                       ><span>Popular Products</span></a
                     >
                   </li>
@@ -695,7 +551,7 @@
 
               <li>
                 <a
-                  href="https://product.geniusocean.com/geniuscart/admin/staff"
+                  href="{% url 'staff' %}}"
                   class="wave-effect"
                   ><i class="fas fa-user-secret"></i>Manage Staffs</a
                 >
@@ -959,4 +815,7 @@
   {% block 'main-content' %}
   {% endblock 'main-content' %}
   </body>
+      {% comment %} <footer class="container-fluid bg-success text-center text-white p-2 mt-5">
+      Copyright : EST 2022 || Developed by : Sanjay Gupta
+    </footer> {% endcomment %}
 </html>

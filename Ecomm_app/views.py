@@ -307,50 +307,8 @@ def address(request):
     add = Customer.objects.filter(user = request.user)
     return render(request, 'app/address.html',locals())
 
-
-
-
-
 ###########################################################
-
-class StaffAPI(APIView):
-    def post(self, request):
-        try:
-            Serializer = StaffSerializer(data=request.data)
-            if Staff.objects.filter(**request.data).exists():
-                raise serializers.ValidationError("already exists")
-            if Serializer.is_valid(raise_exception=True):
-                Serializer.save() 
-                return JsonResponse({"msg":"data added successfully"},safe=False,status=200)
-            else:
-                return JsonResponse({"msg":"Invalid input"},safe=False)
-        except Exception as e:
-            return JsonResponse({"msg":"Internal server error {}".format(e)},safe=False,status=500)
-        
-    def get(self, request):
-        try:
-            item = Staff.objects.all()
-            Serializer = StaffSerializer(item, many=True)        
-            return JsonResponse(Serializer.data,safe=False)
-        except Exception as e:
-            return JsonResponse({"msg":"Internal server eror {}".format(e)},safe=False, status=500)
-
-    def delete(self, request, pk):
-        item = Staff.objects.filter(id=pk)
-        item.delete()
-        return JsonResponse({"msg":"data deleted successfully"},safe=False, status=200)
-
-    def put(self, request, pk):
-        item = Staff.objects.get(pk=pk)
-        Serializer = StaffSerializer(instance=item, data=request.data)
-        if Staff.objects.filter(**request.data).exists():
-            raise serializers.ValidationError("already exist")
-        if Serializer.is_valid():
-            Serializer.save()
-            return JsonResponse({"msg":"data updated successfully"},safe=False,status=200)
-        else:
-            return JsonResponse({"msg":"Invalid data"},safe=False,status=500)
-        
+   
 class ProductAPI(APIView):
     def post(self, request):
         Serializer = ProductSerializer(data = request.data)
@@ -386,6 +344,7 @@ class add_to_cart_data(APIView):
         Serializer = AddToCartSerializer(item,many=True)
         import pdb ; pdb.set_trace()
         return JsonResponse(Serializer.data,safe=False)
+    
     def post(self, request):
         try:
             form = AddToCartForm(request.POST)
@@ -414,6 +373,83 @@ class AddToWishlistAPI(APIView):
                 return JsonResponse({"msg":"form data invalid"})
         except Exception as e:
             return JsonResponse({"msg":"Internal server error {}".format(e)},safe=False)
-                
-
         
+class AddToCartAPI(APIView):
+    def post(self, request):
+        try:
+            data = request.data
+            Serializer = AddToCartSerializer(data=data)
+            if Serializer.is_valid():
+                Serializer.save()
+                return JsonResponse({"msg":"data added into cart"},safe=False,status=200)
+            else:
+                return JsonResponse({"msg":"Invalid data"},safe=False,status=400)
+        except Exception as e:
+            return JsonResponse({"msg":"Internal server error {}".format(e)},safe=False,status=400)
+
+            
+class ProductReviewAPI(APIView):
+    def post(self, request):
+        Serializer =  ProductReviewSerializer(data = request.data)       
+        if ProductReviewModel.objects.filter(**request.data).exists():
+            raise serializers.ValidationError("review already exists")
+        if Serializer.is_valid():
+            Serializer.save()
+            
+            return JsonResponse({"msg":"review added"},safe=False, status=200)
+        else:
+            return JsonResponse({"msg":"invalid data"},safe=False,status=400)
+        
+    def get(self, request):
+        item = ProductReviewModel.objects.all()
+        Serializer = ProductReviewSerializer(item, many=True)
+        return JsonResponse(Serializer.data,safe=False,status=200)
+
+    def delete(self, request, pk):
+        item = ProductReviewModel.objects.filter(id=pk)
+        item.delete()
+        return JsonResponse({"msg":"data deleted "},safe=False,status=200)
+
+    def put(self, request,pk):
+        item = ProductReviewModel.objects.get(id=pk)
+        Serializer = ProductReviewSerializer(data=request.data, instance=item)
+        if ProductReviewModel.objects.filter(**request.data).exists():
+            raise serializers.ValidationError("review already exits")
+        if Serializer.is_valid():
+            Serializer.save()
+            return JsonResponse({"msg":"data updated"},safe=False,status=200)
+        else:
+            return JsonResponse({"msg":"invalid data"},safe=False,status=400)
+        
+        
+class ProductCommentAPI(APIView):
+    def post(self, request):
+        Serializer = ProductCommentSerializer(data= request.data)
+        if ProductCommentModel.objects.filter(**request.data).exists():
+            raise serializers.ValidationError("Comment already exists")
+        if Serializer.is_valid():
+            Serializer.save()
+            return JsonResponse({"msg":"data added "},safe=False,status=200)
+        else:
+            return JsonResponse({"msg":"Invalid data"},safe=False,status=400)
+    def get(self, request):
+        item = ProductCommentModel.objects.all()
+        Serializer = ProductCommentSerializer(item, many=True)
+        return JsonResponse(Serializer.data,safe=False,status=200)
+
+    def delete(self, request, pk):
+        item = ProductCommentModel.objects.filter(id=pk)
+        item.delete()
+        return JsonResponse({"msg":"data deleted "},safe=False,status=200)
+
+    def put(self, request,pk):
+        item = ProductCommentModel.objects.get(id=pk)
+        Serializer = ProductCommentSerializer(data=request.data, instance=item)
+        if ProductCommentModel.objects.filter(**request.data).exists():
+            raise serializers.ValidationError("review already exits")
+        if Serializer.is_valid():
+            Serializer.save()
+            return JsonResponse({"msg":"data updated"},safe=False,status=200)
+        else:
+            return JsonResponse({"msg":"invalid data"},safe=False,status=400)
+     

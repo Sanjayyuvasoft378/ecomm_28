@@ -45,3 +45,12 @@ class OrderAdmin(admin.ModelAdmin):
 @admin.register(Wishlist)
 class WishlistAdmin(admin.ModelAdmin):
     list_display = ['product_id','qty']
+
+
+@admin.register(ProductReviewModel)
+class ProductReviewAdmin(admin.ModelAdmin):
+    list_display = ['id','review','reviewer']
+    
+@admin.register(ProductCommentModel)
+class ProductCommentAdmin(admin.ModelAdmin):
+    list_display = ['id','comment','commentator']

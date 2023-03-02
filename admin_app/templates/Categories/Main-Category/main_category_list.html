@@ -35,17 +35,20 @@
                                     <th width="20%">image</th>
                                     <th width="20%">category_name</th>
                                     <th width="20%">description</th>
-                                    {% comment %} <th>Status</th>
-                                    <th>Options</th> {% endcomment %}
+                                    <th>Status</th>
+                                    <th>Options</th>
                                 </tr>
                             </thead>
-
                             {% for main_data in data %}
                             <tbody>
                             <tr>
-                            <td><img src="{{ main_data.image }}"></td>
+                            <td><img src="{{ main_data.cate_image }}"></td>
                             <td>{{ main_data.category_name }}</td>
                             <td>{{ main_data.description }}</td>
+                            <td>Active</td>
+                            <td>
+                              <button type="button"  class="btn btn-danger"><a href="{% url 'main-category' main_data.id %}">Delete</a></button>
+                             <button class="btn btn-primary"><a href="{% url 'main-category' main_data.id %}">Edit</a></button></td>
                             </tr>
                             </tbody>
                             {% endfor %}
@@ -149,8 +152,8 @@
         <input type="text" placeholder="Enter category_name" name="category_name" required><br>
         <label for="description"><strong>description</strong></label><br>
         <input type="text" placeholder="Enter description" name="description" required><br>
-        <label for="image"><strong>image</strong></label><br>
-        <input type="file" placeholder="image" name="image" required><br>
+        <label for="cate_image"><strong>cate_image</strong></label><br>
+        <input type="file" placeholder="cate_image" name="cate_image" accept="cate_image/jpeg, cate_image/png, cate_image/gif" required><br>
       </div>
       <div class="container" style="background-color: #eee">
       </div>

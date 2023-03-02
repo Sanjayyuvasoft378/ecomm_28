@@ -3,87 +3,93 @@
 {% block 'main-content'  %}
 	<input type="hidden" id="headerdata" value="PRODUCT">
 		<div class="content-area">
-						<div class="mr-breadcrumb">
-							<div class="row">
-								<div class="col-lg-12">
-										<h4 class="heading">Products</h4>
-										<ul class="links">
-											<li>
-												<a href="https://product.geniusocean.com/geniuscart/admin">Dashboard </a>
-											</li>
-											<li>
-												<a href="javascript:;">Products </a>
-											</li>
-											<li>
-												<a href="{% url 'product-list' %}">All Products</a>
-											</li>
-										</ul>
-								</div>
-							</div>
-						</div>
-						<div class="product-area">
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="mr-table allproduct">
-                        					<div class="alert alert-success validation" style="display: none;">
-												<button type="button" class="close alert-close"><span>
-												×</span></button>
-														<p class="text-left"></p> 
-											</div>  
+			<div class="mr-breadcrumb">
+				<div class="row">
+					<div class="col-lg-12">
+						<h4 class="heading">Products</h4>
+						<ul class="links">
+							<li>
+								<a href="https://product.geniusocean.com/geniuscart/admin">Dashboard </a>
+							</li>
+							<li>
+								<a href="javascript:;">Products </a>
+							</li>
+							<li>
+								<a href="{% url 'product-list' %}">All Products</a>
+							</li>
+						</ul>
 
-										<div class="table-responsive">
-												<table id="geniustable" class="table table-hover dt-responsive" cellspacing="0" width="100%">
-													<thead>
-														<tr>
-									                        <th>image</th>
-									                        <th>main_category_id</th>
-									                        <th>sub_category_id</th>
-									                        <th>product_name</th>
-									                        <th>price</th>
-									                        <th>qty</th>
-									                        <th>description</th>
-														</tr>
-													</thead>
-													{% for data in get_data %}
-													<tbody>
-													<tr>
-													<td><img src="{{ data.image }}"></td>
-													<td>{{ data.main_category_id }}</td>
-													<td>{{ data.sub_category_id }}</td>
-													<td>{{ data.product_name }}</td>
-													<td>{{ data.price }}</td>
-													<td>{{ data.qty }}</td>
-													<td>{{ data.description }}</td>
-													</tr>
-													{% endfor %}
-													</tbody>
-												</table>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="modal2" aria-hidden="true">
-					<div class="modal-dialog highlight" role="document">
-					<div class="modal-content">
-							<div class="submit-loader">
-									<img  src="https://product.geniusocean.com/geniuscart/assets/images/1564224329loading3.gif" alt="">
-							</div>
-						<div class="modal-header">
-						<h5 class="modal-title"></h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						</div>
-						<div class="modal-body">
+                    <button type="button" class="btn btn-primary" style="float:right" data-toggle="modal" data-target="#exampleModal">Add New</button>
 
-						</div>
-						<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+			<div class="product-area">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="mr-table allproduct">
+							<div class="alert alert-success validation" style="display: none;">
+								<button type="button" class="close alert-close"><span>
+								×</span></button>
+										<p class="text-left"></p> 
+							</div>  
+							<div class="table-responsive">
+								<table id="geniustable" class="table table-hover dt-responsive" cellspacing="0" width="100%">
+									<thead>
+										<tr>
+											<th>image</th>
+											<th>main_category_id</th>
+											<th>sub_category_id</th>
+											<th>product_name</th>
+											<th>price</th>
+											<th>qty</th>
+											<th>description</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									{% for data in get_data %}
+									<tbody>
+									<tr>
+									<td><img src="{{ data.image }}"></td>
+									<td>{{ data.main_category_id }}</td>
+									<td>{{ data.sub_category_id }}</td>
+									<td>{{ data.product_name }}</td>
+									<td>{{ data.price }}</td>
+									<td>{{ data.qty }}</td>
+									<td>{{ data.description }}</td>
+                            <td>
+                              <button type="button"  class="btn btn-danger"><a href="">Delete</a></button>
+                             <button class="btn btn-primary"><a href="">Edit</a></button></td>
+                            </tr>
+									{% endfor %}
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
-					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="modal2" aria-hidden="true">
+		<div class="modal-dialog highlight" role="document">
+		<div class="modal-content">
+				<div class="submit-loader">
+						<img  src="https://product.geniusocean.com/geniuscart/assets/images/1564224329loading3.gif" alt="">
+				</div>
+			<div class="modal-header">
+			<h5 class="modal-title"></h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="modal-body">
+
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+		</div>
 </div>
 <div class="modal fade" id="catalog-modal" tabindex="-1" role="dialog" aria-labelledby="modal1" aria-hidden="true">
   <div class="modal-dialog">
@@ -183,7 +189,59 @@
 				</div>
 			</div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Products</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+     <!DOCTYPE html>
+<html>
+ 
+  <body>
+    <form method="POST" action="/api/v1/product/" enctype="multipart/form-data">
+      <div class="formcontainer">
+      <div class="container">
+        <label for="main_category_id"><strong>Main Category</strong></label><br>
+		<td>
+			<select id="program" name="program" class="program-dropdown" style="width:400px;">
+			{% for program in data %}
+				<option >{{ program.main_category_id }}</option>
+			`		{% endfor %}
+			</select>
+		</td>
+        <input type="text" placeholder="Enter main_category_id" name="main_category_id" required><br>
+        <label for="sub_category_id"><strong>Sub Category</strong></label><br>
+        <input type="text" placeholder="Enter sub_category_id" name="sub_category_id" required><br>
 
+        <label for="product_name"><strong>Product Name</strong></label><br>
+        <input type="text" placeholder="Enter product_name" name="product_name" required><br>
+        <label for="price"><strong>Price</strong></label><br>
+        <input type="number" placeholder="Enter price" name="price" required><br>
+        <label for="qty"><strong>Quantity</strong></label><br>
+        <input type="number" placeholder="Enter qty" name="qty" required><br>
+        <label for="description"><strong>Description</strong></label><br>
+        <input type="text" placeholder="Enter description" name="description" required><br>
 
-{% endblock 'main-content'  %}
-	
+        <label for="image"><strong>Product Image</strong></label><br>
+        <input type="file" placeholder="image" name="image" accept="image/jpeg, image/png, image/gif required" value="/home/karunasakle/Desktop/ecomm_28/Ecomm_app/static/app/images/product/curd-total.png"><br>
+      </div>
+      <div class="container" style="background-color: #eee">
+      </div>
+        <button type="submit" class="btn btn-primary"><strong>Submit</strong></button>
+    </form>
+  </body>
+</html>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock 'main-content' %}

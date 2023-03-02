@@ -164,14 +164,14 @@ class Wishlist(models.Model):
     product_id = models.ForeignKey(Product,on_delete=models.CASCADE)
     qty = models.IntegerField()
 
-class Staff(models.Model):
-    first_name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
-    email = models.EmailField(max_length=255)
-    mobile_no = models.CharField(max_length=10)
-    gender = models.CharField(max_length=20)
+class ProductReviewModel(models.Model):
+    review = models.CharField(max_length=100)
+    # reviewer = models.ForeignKey(UserRegistration, on_delete=models.CASCADE)
+    reviewer = models.CharField(max_length=200)
 
-    # def __str__(self):
-    #     return self.first_name
+class ProductCommentModel(models.Model):
+    comment = models.CharField(max_length=100)
+    commentator = models.ForeignKey(UserRegistration, on_delete=models.CASCADE)
 
+    
     

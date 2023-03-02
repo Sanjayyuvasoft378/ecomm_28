@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block 'main-content' %}
+<div class="content-area">
+    <div class="mr-breadcrumb">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="heading">Edit Profile</h4>
+                <ul class="links">
+                    <li>
+                        <a href="{% url 'dashboard' %}">Dashboard </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'edit-profile' %}">Edit Profile </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="add-product-content1">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="product-description">
+                    <div class="body-area">
+                        <div class="gocover" style="background: url(https://product.geniusocean.com/geniuscart/assets/images/1564224329loading3.gif) no-repeat scroll center center rgba(45, 45, 45, 0.5);"></div>
+                            <form id="geniusform" action="https://product.geniusocean.com/geniuscart/admin/profile/update" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="_token" value="HQ80oKilVssemDE65uOUek338Xss3CFpAfIV64Kd">
+                                <div class="alert alert-success alert-dismissible validation" style="display: none;">
+                                    <button type="button" class="close alert-close">&times;</button>
+                                            <p class="text-left"></p> 
+                                </div>
+                                <div class="alert alert-danger alert-dismissible validation" style="display: none;">
+                                    <button type="button" class="close alert-close">&times;</button>
+                                </div>  
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="left-area">
+                                            <h4 class="heading">Current Profile Image *</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="img-upload">
+                                            <div id="image-preview" class="img-preview" style="background: url(https://product.geniusocean.com/geniuscart/assets/images/admins/1556780563user.png);">
+                                                <label for="image-upload" class="img-label" id="image-label"><i class="icofont-upload-alt"></i>Upload Image</label>
+                                                <input type="file" name="photo" class="img-upload" id="image-upload">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="left-area">
+                                                <h4 class="heading">Name *</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <input type="text" class="input-field" name="name" placeholder="User Name" required="" value="Admin">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="left-area">
+                                                <h4 class="heading">Email *</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <input type="email" class="input-field" name="email" placeholder="Email Address" required="" value="admin@gmail.com">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="left-area">
+                                                <h4 class="heading">Phone *</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <input type="text" class="input-field" name="phone" placeholder="Phone Number" required="" value="01629552892">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="left-area">
+                                            <h4 class="heading">Shop Name *</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <input type="text" class="input-field" name="shop_name" placeholder="Shop Name" required="" value="Genius Store">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <button class="addProductSubmit-btn" type="submit">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock 'main-content' %}

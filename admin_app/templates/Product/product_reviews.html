@@ -9,13 +9,13 @@
 										<h4 class="heading">Reviews</h4>
 										<ul class="links">
 											<li>
-												<a href="https://product.geniusocean.com/geniuscart/admin">Dashboard </a>
+												<a href="{% url 'dashboard' %}}">Dashboard </a>
 											</li>
 											<li>
 												<a href="javascript:;">Product Discussion </a>
 											</li>
 											<li>
-												<a href="https://product.geniusocean.com/geniuscart/admin/ratings">Reviews</a>
+												<a href="{% url 'product-review-list' %}">Reviews</a>
 											</li>
 										</ul>
 								</div>
@@ -33,12 +33,19 @@
 												<table id="geniustable" class="table table-hover dt-responsive" cellspacing="0" width="100%">
 													<thead>
 														<tr>
-									                        <th width="30%">Product</th>
+									                        <th width="30%">review</th>
 									                        <th>Reviewer</th>
-									                        <th width="40%">Review</th>
 									                        <th>Options</th>
 														</tr>
 													</thead>
+													{% for i in data %}
+													<tbody>
+													<tr>
+													<td>{{ i.review }}</td>
+													<td>{{ i.reviewer }}</td>	
+													</tr>
+													</tbody>
+													{% endfor %}
 												</table>
 										</div>
 									</div>
